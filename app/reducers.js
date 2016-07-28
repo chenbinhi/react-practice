@@ -2,14 +2,7 @@ import { combineReducers } from 'redux'
 import { routerReducer, LOCATION_CHANGE } from 'react-router-redux'
 import { reducer as formReducer } from 'redux-form'
 
-import { CLICK } from 'actions'
-
-function global(state = { s: 0, count: 0, price: 10 }, action) {
-    if (action.type === CLICK)
-        return Object.assign({}, state, { s: state.s + action.data,  count: state.count + action.data })
-    
-    return state
-}
+import { global } from 'containers/App/reducer'
 
 function routing(state = { locationBeforeTransitions: null }, action) {
     //console.log("reducer", action, state)
@@ -28,8 +21,6 @@ function initFormData(state = { form: { sex: 1, 'username': 'input your username
 export default combineReducers({
     global,
     routing,
-    form: formReducer.normalize({
-        
-    }),
+    form: formReducer,
     initFormData,
 })

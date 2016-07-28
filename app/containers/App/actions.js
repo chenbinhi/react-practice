@@ -1,6 +1,4 @@
-export const CLICK = "CLICK"
-
-export const FETCH = "FETCH"
+import { CLICK, FETCH } from './constants'
 
 export function createClickAction() {
     return { type: CLICK, data: 1}

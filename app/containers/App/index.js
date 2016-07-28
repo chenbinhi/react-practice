@@ -10,8 +10,8 @@ import Datetime from 'react-datetime'
 
 import styles from './styles.css'
 
-import { createFetchAction } from 'actions'
-import { selectSum } from 'selectors'
+import { createFetchAction } from './actions'
+import { selectSum } from './selectors'
 
 import { LogA } from 'components/A'
 import Input from 'components/Input'
@@ -159,7 +159,7 @@ App.childContextTypes = {
 }
 
 export default connect(
-    () => ({}),
+    null,
     {
         fetch: createFetchAction,
         // fetch(url) {

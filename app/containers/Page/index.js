@@ -8,8 +8,8 @@ import { createSelector } from 'reselect'
 
 import styles from './styles.css'
 
-import { CLICK } from 'actions'
-import { selectGlobal, selectSum } from 'selectors'
+import { CLICK } from 'containers/App/constants'
+import { selectGlobal, selectSum } from 'containers/App/selectors'
 
 import A from 'components/A'
 
