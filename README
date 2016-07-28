@@ -1,9 +1,8 @@
 react-practice: 
-
+构成：
 react + webpack + babel (ES2015)
-redux
-react-router
-react-router-redux
+redux/react-redux
+react-router/react-router-redux
 reselct
 redux-form
 react-dnd
@@ -13,3 +12,4 @@ redux-dev-tools
 
 Todo:
 test 相关
+saga/observerable
