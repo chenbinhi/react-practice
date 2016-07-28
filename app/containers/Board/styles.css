@@ -1,0 +1,45 @@
+/*.drag {
+    width: 60px;
+    background-color: blue;
+    margin: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.drop {
+    width: 90px;
+    background: red;
+    border: 1px solid blue;
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px;
+    padding: 5px;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+.board {
+    width: 600px;
+    border: 1px solid red;
+    margin: 10px;
+}*/
+.board {
+    display: flex;
+    border: 1px solid red;
+    margin: 10px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.drop {
+    border: 1px solid blue;
+    margin: 5px;
+    padding: 5px;
+}
+
+.drag {
+    border: 1px solid green;
+    margin: 5px;
+    padding: 5px;
+}

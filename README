@@ -1,0 +1,15 @@
+react-practice: 
+
+react + webpack + babel (ES2015)
+redux
+react-router
+react-router-redux
+reselct
+redux-form
+react-dnd
+
+调试：
+redux-dev-tools
+
+Todo:
+test 相关

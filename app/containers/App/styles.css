@@ -1,0 +1,62 @@
+/*
+.app {
+    font-size: 16px;
+}
+*/
+:global .active {
+    color: blue;
+    /*
+    flex-basis: 0;
+    flex-grow: 2;
+    */
+}
+
+:global .empty {
+    border: 1px solid black;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    background-image: linear-gradient(90deg, green 1px, transparent calc(50% - 1px), red);
+    /*background-size: 10px;*/
+}
+
+.nav {
+    display: flex;
+    /*
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    */
+}
+
+@keyframes bounce {
+  33% { transform: translateY(-20px); }
+  66% { transform: translateY(0px); }
+}
+
+.header {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    width: 30%;
+    animation: bounce 1s infinite ease-in-out;
+    /*transform: rotate(30deg);*/
+    /*composes: bounce from './global.css'; */
+}
+
+.active {
+    color: red;
+}
+
+.image {
+    composes: bounceIn from '../../global.css';
+    
+}
+
+.ball {
+  composes: bounce from "../../global.css";
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rebeccapurple;
+}

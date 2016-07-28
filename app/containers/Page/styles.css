@@ -1,0 +1,191 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    height: 300px;
+}
+
+.content {
+    border: 5px solid black;
+    border-radius: 10px;
+    background: blue;
+    background: url(https://weflow.io/img/logo-icon.png) no-repeat calc(50% - 10px) 50% / 1em 1em;
+    outline: dashed 5px lightyellow ;
+    box-shadow: 0 0 0 15px red, 0 0 5px 20px;
+}
+
+.test {
+    border: 1px solid black;
+    display: inline-block;
+}
+
+.test1 {
+    width: 50%;
+    height: 50%;
+    border: 1px solid black;
+    background: linear-gradient(45deg, #58a 50%, #fb3 0) repeat left top / 3em 3em;
+}
+
+.test2 {
+    width: 50%;
+    height: 50%;
+    border: 1px solid black;
+    background: linear-gradient(45deg, #58a 25%, #fb3 0, #fb3 50%, #58a 0, #58a 75%, #fb3 0) repeat left top / 3em 3em;
+}
+
+
+.test3 {
+    width: 50%;
+    height: 50%;
+    border: 2px solid hsla(8, 50%, 50%, .1);
+    background: #58a;
+    background-image: repeating-linear-gradient(60deg, hsla(240, 100%, 100%, .1), hsla(240, 100%, 100%, .1) 15px, transparent 0, transparent 30px);
+}
+
+.test4 {
+    width: 50%;
+    height: 50%;
+    background: linear-gradient(45deg, #fb3 25%, transparent 0, transparent 75%, #fb3 75%), linear-gradient(45deg, #fb3 25%, transparent 0, transparent 75%, #fb3 75%);
+    background-position: 0 0, 15px 15px;
+    background-size: 30px 30px;
+}
+
+ .test5 {
+    width: 50%;
+    height: 50%;
+    border: 30px solid transparent;
+    background: linear-gradient(white, white) padding-box 0 / cover,
+        url(http://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=http%3A%2F%2Fa0.att.hudong.com%2F48%2F95%2F300001057318129078956430743_950.jpg&thumburl=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fh%253D200%2Fsign%3D3ef85b7559df8db1a32e7b643922dddb%2F1ad5ad6eddc451dae3535606b1fd5266d11632b1.jpg) border-box 0 / cover;
+}
+
+.test6 {
+    width: 50%;
+    height: 50%;
+    border: 30px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(-45deg, red 0, red 12.5%, transparent 0, transparent 25%, #58a 0, #58a 37.5%, transparent 0, transparent 50%) 0 / 80px 80px;
+}
+
+@keyframes ants {
+    to {
+        background-position: 100%;
+    }
+}
+.test7 {
+    width: 50%;
+    height: 50%;
+    border: 3px dashed transparent;
+    background: linear-gradient(white, white) padding-box,
+        repeating-linear-gradient(-45deg, black, black 12.5%, transparent 0, transparent 25%, white 0, white 37.5%, transparent 0, transparent 50%) 0 / .6em .6em;
+    animation: ants 12s linear infinite;
+}
+
+.test8 {
+    width: 100px;
+    height: 50px;
+    background: #fb3;
+    /*border-radius: 100px/50px;*/
+    border-radius: 50%;
+}
+
+.test9 {
+    width: 100px;
+    height: 50px;
+    background: #fb3;
+    border-radius: 50% 50% 0 0 /100% 100% 0 0;
+    border-radius: 100% 0 0 100% /50% 0 0 50%;
+    border-radius: 100% 0 0 0 /100% 0 0 0; 
+    border-radius: 0 0 0 100% 
+}
+
+.test10 {
+    width: 100px;
+    height: 50px;
+    /*border: 1px solid black;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.test10::before {
+    content: '';
+    top: 0; right: 0; bottom: 0; left: 0;
+    position: absolute;
+    background: #fb3;
+    z-index: -1;
+    transform: skewx(-45deg);
+}
+
+.test11 {
+    width: 100px;
+    height: 50px;
+    background: url(http://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=http%3A%2F%2Fa0.att.hudong.com%2F48%2F95%2F300001057318129078956430743_950.jpg&thumburl=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fh%253D200%2Fsign%3D3ef85b7559df8db1a32e7b643922dddb%2F1ad5ad6eddc451dae3535606b1fd5266d11632b1.jpg) border-box 0 / cover;
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0% 50%);
+    transition: 5s clip-path;
+}
+/*
+.test11:hover {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+}*/
+.test12 {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    position: relative;
+}
+
+.test12::before {
+    content: '';
+    top: 0; right: 0; bottom: 0; left: 0;
+    position: absolute;
+    z-index: -1;
+    background: #58a;
+    transform: perspective(.5em) rotateX(5deg);
+}
+
+.test13 {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.test13::before {
+    content: '';
+    top: 0; right: 0; bottom: 0; left: 0;
+    position: absolute;
+    z-index: -1;
+    background: url(http://image.baidu.com/search/down?tn=download&ipn=dwnl&word=download&ie=utf8&fr=result&url=http%3A%2F%2Fa0.att.hudong.com%2F48%2F95%2F300001057318129078956430743_950.jpg&thumburl=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fh%253D200%2Fsign%3D3ef85b7559df8db1a32e7b643922dddb%2F1ad5ad6eddc451dae3535606b1fd5266d11632b1.jpg) border-box 0 / cover;
+    transform: perspective(.5em) rotateZ(45deg);
+}
+
+.test14 {
+    border: 1px solid #58a;
+    /*height: 50px;
+    width: 100px;*/
+}
+
+.test14::before {
+    content: '';
+    height: 100%;
+    width: 0px;
+    display: inline-block;
+    vertical-align: middle;
+    visibility: hidden;
+}
+
+.test15 {
+    border: 1px solid #58a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.test16 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #58a;
+    background: #fa3;
+    transform: perspective(200px) rotateX(30deg) translateZ(30px);
+    transform-origin: right;
+}
