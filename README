@@ -1,15 +1,18 @@
-react-practice: 
-构成：
-react + webpack + babel (ES2015)
-redux/react-redux
-react-router/react-router-redux
-reselct
-redux-form
-react-dnd
+# react-practice
+# 构成:
+* react + webpack + babel (ES2015)
+* redux/react-redux
+* react-router/react-router-redux
+* reselct
+* redux-form
+* react-dnd
 
-调试：
-redux-dev-tools
+## 调试：
+* redux-dev-tools
 
-Todo:
-test 相关
-saga/observerable
+## Todo:
+* unit test case
+* saga/observerable
+* api module:  isomorphic-fetch normalize 
+*
+
