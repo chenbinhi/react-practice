@@ -131,7 +131,6 @@ class App extends Component {
                 <li>location: {JSON.stringify(this.props.location)}</li>
                 <li>params: {JSON.stringify(this.props.params)}</li>
                 <li>route: {JSON.stringify(this.props.route)}</li>
-                <li>router: {JSON.stringify(this.context.router)}</li>
                 </ul>
                 </div>
                 <div className={styles.header} ref={ ref => this.appRef = ref } onClick={this.click}>

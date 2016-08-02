@@ -16,12 +16,11 @@ A.propTypes = {
 
 export const withLog = (Component) => {
     return React.createClass({
-        render: function () {
+        render () {
             console.log(Component.name, ' with log')
             return <Component { ...this.props } { ...this.state } />
         }
     })
 }
-
 export const LogA = withLog(A)
 export default A;

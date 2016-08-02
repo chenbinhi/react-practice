@@ -41,6 +41,7 @@ const Page = (props, context) => {
             */}
             { /*console.log(props)*/ }
             <A p={parseInt(props.s)} onClick={props.onClick}/>
+            <div>context: { JSON.stringify(context) }</div>
             <div>props.sum: {JSON.stringify(props.sum)}</div>
             { /* <div onClick={() => { history.push('/about')}}>go to About(history)</div> */ }
             <a href='#' onClick={() => { props.go('/about')}}>go to About(redux)</a>
