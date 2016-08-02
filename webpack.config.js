@@ -2,12 +2,14 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
+const PUBLICPATH = '/practices/'
+
 module.exports = 
 {
     entry: "./app/index.js",
     output: {
         path: './dist',
-        publicPath: '/',
+        publicPath: PUBLICPATH,
         filename: 'bundles.js',
     },
     module: {
@@ -27,7 +29,7 @@ module.exports =
         },{
             // for react-datetime 
             test: /\.css/,
-            include: /node_modules/,
+            include: /node_modules\/react-datetime/,
             loaders: [
                 'style',
                 'css?sourceMap=true',
@@ -51,7 +53,11 @@ module.exports =
         */
         //new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+            PUBLICPATH: JSON.stringify(PUBLICPATH)
+        }),
+        new webpack.ProvidePlugin({
+             //$: 'jquery'
         })
     ],
     resolve: {

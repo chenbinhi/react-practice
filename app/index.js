@@ -13,7 +13,7 @@ import routes from './routes'
 
 
 const browserHistory = useRouterHistory(createBrowserHistory)({
-  basename: '/dist/'
+  basename: PUBLICPATH,
 })
 let store = createStore(browserHistory, reducers)
 const history = syncHistoryWithStore(browserHistory, store)
