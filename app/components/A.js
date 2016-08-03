@@ -14,13 +14,14 @@ A.propTypes = {
     onClick: PropTypes.func.isRequired,
 };
 
-export const withLog = (Component) => {
-    return React.createClass({
+export const withLog = (Comp) => {
+    return class extends Component {
         render () {
-            console.log(Component.name, ' with log')
-            return <Component { ...this.props } { ...this.state } />
+            console.log(Comp.name, ' with log')
+            return <Comp { ...this.props } { ...this.state } />
         }
-    })
+    }
 }
+
 export const LogA = withLog(A)
 export default A;
