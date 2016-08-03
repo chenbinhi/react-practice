@@ -2,8 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { Link, IndexLink } from 'react-router'
 import fetch from 'isomorphic-fetch'
-import 'react-datetime/css/react-datetime.css'
-import Datetime from 'react-datetime'
+//import 'react-datetime/css/react-datetime.css'  // FIXME: 引起sourceMap错乱
+//import Datetime from 'react-datetime'
 
 //import 'normalize.css'
 //import 'sanitize.css/sanitize.css'
@@ -143,7 +143,7 @@ class App extends Component {
                 <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
                 <EventForm onSubmit={(e) => console.log('form submited', e)}/>
                 <Board />
-                <Datetime />
+                {/*<Datetime />*/}
             </div>
         );
     }
