@@ -22,12 +22,10 @@
 
 .nav {
     display: flex;
-    /*
     justify-content: space-around;
     align-content: center;
     align-items: center;
     flex-wrap: wrap;
-    */
 }
 
 @keyframes bounce {

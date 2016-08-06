@@ -2,6 +2,10 @@ import React, {Component, PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { Link, IndexLink } from 'react-router'
 import fetch from 'isomorphic-fetch'
+import Media from 'react-media'
+
+import Cleave from 'cleave.js/dist/cleave-react'
+
 //import 'react-datetime/css/react-datetime.css'  // FIXME: 引起sourceMap错乱
 //import Datetime from 'react-datetime'
 
@@ -112,32 +116,34 @@ class App extends Component {
         return (
             <div className={styles.app}>
                 <div className={styles.nav}>
-                <div className='empty'>
-                <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
-                </div>
-                <div className='empty'>
-                <Link to='/page/1' activeClassName={styles.active} >Page1</Link>
-                </div>
-                <div className='empty'>
-                <Link to='/page/2' activeClassName={styles.active}  >Page2</Link>
-                </div>
-                <div className='empty'>
-                <Link to='/about' activeClassName='active' >Aboutttttttttttttttttttttttttttttttttttttttttt</Link>
-                </div>
+                    <div className='empty'>
+                    <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
+                    </div>
+                    <div className='empty'>
+                    <Link to='/page/1' activeClassName={styles.active} >Page1</Link>
+                    </div>
+                    <div className='empty'>
+                    <Link to={ { pathname: '/page/2', state: 'urlstate'} } activeClassName={styles.active}  >Page2</Link>
+                    </div>
+                    <div className='empty'>
+                    <Link to='/about' activeClassName='active' >About</Link>
+                    </div>
                 </div>
                 <div className={styles.debug}>
-                <ul>
-                <li>context: { JSON.stringify(this.context) }</li>
-                <li>location: {JSON.stringify(this.props.location)}</li>
-                <li>params: {JSON.stringify(this.props.params)}</li>
-                <li>route: {JSON.stringify(this.props.route)}</li>
-                </ul>
+                    <ul>
+                    <li>context: { JSON.stringify(this.context) }</li>
+                    <li>location: {JSON.stringify(this.props.location)}</li>
+                    <li>params: {JSON.stringify(this.props.params)}</li>
+                    <li>route: {JSON.stringify(this.props.route)}</li>
+                    <li>Media Query: <Media query="(max-width: 599px)"><p>The document is less than 600px wide.</p></Media></li>
+                    </ul>
                 </div>
                 <div className={styles.header} ref={ ref => this.appRef = ref } onClick={this.click}>
-                <a href="#">This is an App</a>
-                <div>state: {JSON.stringify(this.state)}</div>
+                    <a href="#">This is an App</a>
+                    <div>state: {JSON.stringify(this.state)}</div>
                 </div>
                 {this.props.children}
+                <Cleave placeholder='Cleave: YYYY/MM/DD' options={{date: true, datePattern: ['Y', 'm', 'd']}} />
                 <Input value={ this.state.input || 'Controlled Input' } onInput={ this.ctrlInput } />
                 <UnctrlInput defaultValue='Uncontrolled Input' onInput={ this.unctrlInput } />
                 <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
