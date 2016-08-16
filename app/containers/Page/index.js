@@ -47,7 +47,7 @@ const Page = (props, context) => {
             <div>props.sum: {JSON.stringify(props.sum)}</div>
             { /* <div onClick={() => { history.push('/about')}}>go to About(history)</div> */ }
             <a href='#' onClick={() => { props.go('/about')}}>go to About(redux)</a>
-            <LazyImg src='https://weflow.io/img/logo-icon.png' />
+            <LazyImg className={styles.fix} src='https://weflow.io/img/logo-icon.png' />
         </div>
         </div>
     );

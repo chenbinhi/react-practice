@@ -21,6 +21,7 @@ class LazyImg extends Component {
     }
 
     componentDidMount() {
+        this.handleVisible()
         window.addEventListener('scroll', this.handleVisible)
     }
 
@@ -46,7 +47,7 @@ class LazyImg extends Component {
 
     render() {
         return (
-            <img ref={r => this.ref = r} src={this.state.src} width={this.props.width || '50px'} height={this.props.height || '50px'} />
+            <img ref={r => this.ref = r} src={this.state.src} className={this.props.className} width={this.props.width || '50px'} height={this.props.height || '50px'} />
         );
     }
 }

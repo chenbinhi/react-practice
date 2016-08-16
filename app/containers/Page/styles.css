@@ -189,3 +189,9 @@
     transform: perspective(200px) rotateX(30deg) translateZ(30px);
     transform-origin: right;
 }
+
+.fix {
+    position: fixed;
+    margin: auto;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
