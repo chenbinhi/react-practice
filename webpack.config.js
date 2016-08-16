@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
-const PUBLICPATH = '/practices/'
+const PUBLICPATH = '/' //'/practices/'
 
 module.exports = 
 {
@@ -34,6 +34,12 @@ module.exports =
                 'style',
                 'css?sourceMap=true',
                 'postcss'
+            ]
+        }, {
+            test: /\.jpg/,
+            exclude: /node_modules/,
+            loaders : [
+                'file?name=/assets/[name].[ext]'
             ]
         }],
     },

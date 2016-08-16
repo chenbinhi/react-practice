@@ -7,12 +7,28 @@
 * redux-form
 * react-dnd
 
+## webpack
+* DefinePlugin
+* HtmlWebpackPlugin
+* ProviderPlugin
+* babel-loader
+* style-loader
+* css-loader:  css-module
+* postcss-loader: autoprefixer
+* file-loader
+
 ## 调试：
 * redux-dev-tools
+
+## 组件
+* LogA
+* LazyImg
+* UnctrlInput
 
 ## Todo:
 * unit test case
 * saga/observerable
-* api module:  isomorphic-fetch normalize 
-*
+* api module:  isomorphic-fetch normalize // 优先级高
+* webpack dll  // 优先级低
+* 国际化支持（i18n）  // 优先级低
 

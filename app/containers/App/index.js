@@ -24,6 +24,8 @@ import About from 'containers/About'
 import EventForm from 'containers/EventForm'
 import Board from 'containers/Board'
 
+import LazyImg from 'components/LazyImg'
+
 
 class App extends Component {
     constructor(props) {
@@ -150,6 +152,7 @@ class App extends Component {
                 <EventForm onSubmit={(e) => console.log('form submited', e)}/>
                 <Board />
                 {/*<Datetime />*/}
+                <LazyImg src='https://weflow.io/img/logo-icon.png' />
             </div>
         );
     }
