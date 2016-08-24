@@ -16,6 +16,8 @@
 * css-loader:  css-module
 * postcss-loader: autoprefixer
 * file-loader
+* 多入口打包（Todo: react-router 异步加载）
+* CommonsChunkPlugin ?  http://webpack.github.io/docs/code-splitting.html
 
 ## 调试：
 * redux-dev-tools

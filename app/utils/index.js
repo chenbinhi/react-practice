@@ -10,7 +10,8 @@ export function calOffsetTop(e) {
 export function isInVisiableSection(e) {
         let clientHeight = document.compatMode == 'BackCompat' ? document.body.clientHeight : document.documentElement.clientHeight
         let offsetTop = calOffsetTop(e)
-        let scrollTop = document.compatMode == 'BackCompat' ? document.body.scrollTop : document.documentElement.scrollTop
+        //let scrollTop = document.compatMode == 'BackCompat' ? document.body.scrollTop : document.documentElement.scrollTop
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop // for chrome bug
         return offsetTop - scrollTop < clientHeight
 }
 
