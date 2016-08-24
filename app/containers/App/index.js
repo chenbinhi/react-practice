@@ -20,10 +20,6 @@ import { selectSum } from './selectors'
 import { LogA } from 'components/A'
 import Input from 'components/Input'
 import UnctrlInput from 'components/UnctrlInput'
-import About from 'containers/About'
-import EventForm from 'containers/EventForm'
-import Board from 'containers/Board'
-
 import LazyImg from 'components/LazyImg'
 
 
@@ -119,38 +115,42 @@ class App extends Component {
             <div className={styles.app}>
                 <div className={styles.nav}>
                     <div className='empty'>
-                    <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
+                        <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
                     </div>
                     <div className='empty'>
-                    <Link to='/page/1' activeClassName={styles.active} >Page1</Link>
+                        <Link to='/page/1' activeClassName={styles.active} >Page1</Link>
                     </div>
                     <div className='empty'>
-                    <Link to={ { pathname: '/page/2', state: 'urlstate'} } activeClassName={styles.active}  >Page2</Link>
+                        <Link to={ { pathname: '/page/2', state: 'urlstate'} } activeClassName={styles.active}  >Page2</Link>
                     </div>
                     <div className='empty'>
-                    <Link to='/about' activeClassName='active' >About</Link>
+                        <Link to='/board' activeClassName='active' >Board</Link>
+                    </div>
+                    <div className='empty'>
+                        <Link to='/form' activeClassName='active' >Form</Link>
+                    </div>
+                    <div className='empty'>
+                        <Link to='/about' activeClassName='active' >About</Link>
                     </div>
                 </div>
                 <div className={styles.debug}>
                     <ul>
-                    <li>context: { JSON.stringify(this.context) }</li>
-                    <li>location: {JSON.stringify(this.props.location)}</li>
-                    <li>params: {JSON.stringify(this.props.params)}</li>
-                    <li>route: {JSON.stringify(this.props.route)}</li>
-                    <li>Media Query: <Media query="(max-width: 599px)"><p>The document is less than 600px wide.</p></Media></li>
+                        <li>context: { JSON.stringify(this.context) }</li>
+                        <li>location: {JSON.stringify(this.props.location)}</li>
+                        <li>params: {JSON.stringify(this.props.params)}</li>
+                        <li>route: {JSON.stringify(this.props.route)}</li>
+                        <li>Media Query: <Media query="(max-width: 599px)"><p>The document is less than 600px wide.</p></Media></li>
                     </ul>
                 </div>
                 <div className={styles.header} ref={ ref => this.appRef = ref } onClick={this.click}>
-                    <a href="#">This is an App</a>
-                    <div>state: {JSON.stringify(this.state)}</div>
+                    <a href="#" >This is an App</a>
+                    <div>app state: {JSON.stringify(this.state)}</div>
                 </div>
                 {this.props.children}
                 <Cleave placeholder='Cleave: YYYY/MM/DD' options={{date: true, datePattern: ['Y', 'm', 'd']}} />
                 <Input value={ this.state.input || 'Controlled Input' } onInput={ this.ctrlInput } />
                 <UnctrlInput defaultValue='Uncontrolled Input' onInput={ this.unctrlInput } />
                 <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
-                <EventForm onSubmit={(e) => console.log('form submited', e)}/>
-                <Board />
                 {/*<Datetime />*/}
                 <LazyImg src='https://weflow.io/img/logo-icon.png' />
             </div>
