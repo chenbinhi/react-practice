@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.css'
 
-const Layeout = () => {
+const Layout = () => {
     return (
         <div>
             <div className={styles.header}>
@@ -39,4 +39,4 @@ const Layeout = () => {
     );
 };
 
-export default Layeout;
+export default Layout;

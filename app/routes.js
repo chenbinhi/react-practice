@@ -7,7 +7,7 @@ import About from 'containers/About'
 
 import EventForm from 'containers/EventForm'
 import Board from 'containers/Board'
-import Layeout from 'containers/Layeout'
+import Layout from 'containers/Layout'
 
 export default (<Route path='/' component={App}>
                 {/*<IndexRedirect to='page/1' />*/}
@@ -15,7 +15,7 @@ export default (<Route path='/' component={App}>
                 <Route path='page/:id' component={Page} />
                 <Route path='board' component={Board} />
                 <Route path='form' component={EventForm} />
-                <Route path='layeout' component={Layeout} />
+                <Route path='layout' component={Layout} />
                 <Route path='about' component={About} />
             </Route>)
 

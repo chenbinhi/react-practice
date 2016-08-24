@@ -130,6 +130,9 @@ class App extends Component {
                         <Link to='/form' activeClassName='active' >Form</Link>
                     </div>
                     <div className='empty'>
+                        <Link to='/layout' activeClassName='active' >Layout</Link>
+                    </div>
+                    <div className='empty'>
                         <Link to='/about' activeClassName='active' >About</Link>
                     </div>
                 </div>
