@@ -5,13 +5,14 @@ import styles from './styles.css'
 
 class DragSquare extends Component {
     render() {
-        const { id, isDragging, connectDragSource, connectDragPreview, canDrag } = this.props
+        const { id, isDragging, connectDragSource, connectDragPreview, canDrag, dropId } = this.props
         //console.log('Dragging: %s', isDragging)
         return connectDragPreview(
             <div className={styles.drag}>
                 <div>ID: {id}</div>
                 <div>canDrag: {canDrag? 'true':'false'}</div>
                 <div>Dragging: {isDragging? 'true': 'false'}</div>
+                <div>dropId: { dropId }</div>
                 {connectDragSource(<div className={styles.drag}> drag me </div>)}
             </div>
         );
@@ -27,12 +28,12 @@ DragSquare.propTypes = {
 
 const spec = {
     canDrag(props, monitor) {
-        return props.id == 1
+        return !(props.dropId >= 0)
     },
 
     beginDrag(props) {
         //console.log('beginDrag')
-        return { id: props.id }
+        return { id: props.id, count: props.count || 1 }
     },
 
     isDragging(props, monitor) {

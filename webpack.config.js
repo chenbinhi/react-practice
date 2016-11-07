@@ -41,6 +41,14 @@ module.exports =
             loaders : [
                 'file?name=/assets/[name].[ext]'
             ]
+        // },{
+        //     test: /\.scss$/,
+        //     exclude: /node_modules/,
+        //     loaders: [
+        //         'style-loader',
+        //         'css-loader?module&sourceMap&importLoader=1',
+        //         'sass-loader?sourceMap'
+        //     ]
         }],
     },
     postcss: function() {
@@ -50,13 +58,13 @@ module.exports =
         new HtmlWebpackPlugin({
             template: "app/index.tpl"
         }),
-        /* 
+        
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         }),
-        */
+    
         //new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
