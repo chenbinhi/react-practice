@@ -30,11 +30,12 @@ class Virtual extends Component {
           return this.calRegion(seq)
       }), 'seq')
       
-      data.reduce((last, d) => {
+      data.reduce((last, d, id) => {
           if (last && last.x + last.width > d.x) {
             last.width = d.x - last.x
             console.assert(last.seq < d.seq)
           }
+          d.id = id
           return d
       }, null)
       this.state = { data, count: data.length }
@@ -75,26 +76,52 @@ class Virtual extends Component {
         this._last = null
       }
 
-      let data = Array.from(this.state.data)
-      let orig = data[fromId]
+      let data = this.state.data
+      let active = _.sortBy(data.filter((d) => {
+        return !d.fake && (d.active || d.id === fromId)
+      }), 'seq')
+      let orig = active.reduce((m, a) => {
+        m.width += a.width
+        m.height = a.height // height 必须等高
+        return m
+      }, {
+        width: 0,
+        height: 0,
+      })
       let region = this.calRegion(seq, orig.width, orig.height)
-      let coincide = _.find(data, (d, id) => !d.fake && id !== fromId && region.y === d.y && !(region.x + region.width <= d.x || region.x >= d.x + d.width))
+      // TODO: 检查尾部是否超过范围
+      let coincide = _.find(data, (d) => !d.fake && d.id !== fromId && !d.active && region.y === d.y && !(region.x + region.width <= d.x || region.x >= d.x + d.width))
       if (coincide) {
         console.log('coincide', region, coincide)
       }
 
       if (dragging) {
-        region.fake = dragging
-        region.coincide = !!coincide
-        data[this.state.count] = region
+        data = Array.from(this.state.data)
+
+        let count = this.state.count
+        let seq = region.seq
+        active.forEach(a => {
+            let region = this.calRegion(seq, a.width, a.height)
+            seq += a.width/interval
+            region.id = a.id
+            region.fake = true
+            region.coincide = !!coincide
+            data[count++] = region
+        })
+        this.setState({ data })
       } else {
         data = data.slice(0, this.state.count)
         if (!coincide) {
-          data[fromId] = region
-          this.resetSelected()
+          let seq = region.seq
+          active.forEach(a => {
+            let region = this.calRegion(seq, a.width, a.height)
+            region.id = a.id
+            data[a.id] = region
+            seq += a.width/interval
+          })
         }
+        this.setState({ data })
       }
-      this.setState({ data })
     }
 
     addSelected(id) {
@@ -112,18 +139,19 @@ class Virtual extends Component {
     }
     cellRenderer ({ index, key, style }) {
       // console.log('cellRenderer', index, key, style)
+      console.assert(this.state.data[index].fake || index === this.state.data[index].id, this.state.data[index], index)
       return (
         <DragSquare
           key={key}
           style={style}
-          id={index}
+          id={this.state.data[index].id}
           onClick={this.addSelected}
           onDrag={this.dragHandler}
           active={this.state.data[index].active}
           fake={this.state.data[index].fake}
           coincide={this.state.data[index].coincide}
         >
-          { `${this.state.data[index].seq + 1} : ${index + 1}` }
+          { `${this.state.data[index].seq + 1} : ${this.state.data[index].id + 1}` }
         </DragSquare>
       )
     }
