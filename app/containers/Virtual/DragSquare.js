@@ -33,8 +33,10 @@ class DragSquare extends Component {
         }
         if (coincide) {
             nstyle.background = 'hsla(0, 86%, 60%, 0.5)'
-        } else if (active || isDragging) {
+        } else if (active) {
             nstyle.background = 'hsla(120, 67%, 49%, 0.5)'
+        } else if (isDragging) {
+            nstyle.background = 'hsla(50, 67%, 49%, 0.3)'
         } else {
             nstyle.background = ''
         }
