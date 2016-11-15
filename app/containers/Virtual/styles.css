@@ -1,0 +1,33 @@
+
+.container {
+    border: 1px solid black;
+    margin-left: 50px;
+    position: relative;
+}
+
+.collection_container {
+    border: 1px solid black;
+}
+.drop {
+    /*width: 100px;*/
+    border: 1px solid blue;
+    /*margin: 5px;
+    padding: 5px;*/
+}
+
+.drag {
+    border: 1px solid green;
+    cursor: move; 
+    /*margin: 5px;
+    padding: 5px;*/
+}
+
+.grid_container {
+    border: 1px solid black;
+}
+.grid {
+    border: 0.1px solid lightgray;
+    /*box-sizing: content-box;
+    padding: 0 5px 10px 0;*/
+    color: red;
+}

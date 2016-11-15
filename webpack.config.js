@@ -27,13 +27,11 @@ module.exports =
                 'postcss'
             ]
         },{
-            // for react-datetime 
             test: /\.css/,
-            include: /node_modules\/react-datetime/,
+            include: /node_modules\/(react-datetime|react-resizable|react-grid-layout|react-virtualized)/,
             loaders: [
-                'style',
+                'style-loader',
                 'css?sourceMap=true',
-                'postcss'
             ]
         }, {
             test: /\.jpg/,
@@ -59,11 +57,11 @@ module.exports =
             template: "app/index.tpl"
         }),
         
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
     
         //new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({

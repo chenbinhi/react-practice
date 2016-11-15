@@ -4,16 +4,36 @@ import ItemTypes from './Constans'
 import styles from './styles.css'
 
 class DragSquare extends Component {
-    render() {
-        const { id, isDragging, connectDragSource, connectDragPreview, canDrag, dropId } = this.props
+    constructor(props) {
+        super(props)
+        this.state = { active: props.active}
+    }
+    componentWillReceiveProps(nextProps) {
+        this.setState({active: nextProps.active})
+    }
+    clickHandler() {
+        // console.log(this.props.id, 'clicked!')
+        let active = !this.state.active
+        this.setState({ active})
+        this.props.onClick && this.props.onClick(this.props.id)
+    }
+    render() {       
+        const { id, isDragging, connectDragSource, connectDragPreview, canDrag, dropId, style } = this.props
+        let nstyle = Object.assign({}, style)
+        if (this.state.active) {
+            nstyle.background = 'lightgreen'
+        } else {
+            nstyle.background = ''
+        }
         //console.log('Dragging: %s', isDragging)
         return connectDragPreview(
-            <div className={styles.drag}>
+            <div className={styles.drag} style={nstyle} onClick={this.clickHandler.bind(this)}>
                 <div>ID: {id}</div>
                 <div>canDrag: {canDrag? 'true':'false'}</div>
                 <div>Dragging: {isDragging? 'true': 'false'}</div>
                 <div>dropId: { dropId }</div>
                 {connectDragSource(<div className={styles.drag}> drag me </div>)}
+                {this.props.children}
             </div>
         );
     }

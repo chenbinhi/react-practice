@@ -133,9 +133,13 @@ class App extends Component {
                         <Link to='/layout' activeClassName='active' >Layout</Link>
                     </div>
                     <div className='empty'>
+                        <Link to='/virtual' activeClassName='active' >Virtual</Link>
+                    </div>
+                    <div className='empty'>
                         <Link to='/about' activeClassName='active' >About</Link>
                     </div>
                 </div>
+            {/*
                 <div className={styles.debug}>
                     <ul>
                         <li>context: { JSON.stringify(this.context) }</li>
@@ -149,13 +153,16 @@ class App extends Component {
                     <a href="#" >This is an App</a>
                     <div>app state: {JSON.stringify(this.state)}</div>
                 </div>
+            */}
                 {this.props.children}
+            {/*
                 <Cleave placeholder='Cleave: YYYY/MM/DD' options={{date: true, datePattern: ['Y', 'm', 'd']}} />
                 <Input value={ this.state.input || 'Controlled Input' } onInput={ this.ctrlInput } />
                 <UnctrlInput defaultValue='Uncontrolled Input' onInput={ this.unctrlInput } />
                 <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
-                {/*<Datetime />*/}
+                <Datetime />
                 <LazyImg src='https://weflow.io/img/logo-icon.png' />
+            */}
             </div>
         );
     }
