@@ -40,6 +40,7 @@ class Virtual extends Component {
       }, null)
       this.state = { data, count: data.length }
       this.addSelected = this.addSelected.bind(this)
+      this.resetSelected = this.resetSelected.bind(this)
       this.cellRenderer = this.cellRenderer.bind(this)
       this.dragHandler = this.dragHandler.bind(this)
       this.cellSizeAndPositionGetter = this.cellSizeAndPositionGetter.bind(this)
@@ -131,6 +132,7 @@ class Virtual extends Component {
       this.setState({ data })
     }
     resetSelected() {
+      console.log('resetSelected')
       let data = Array.from(this.state.data)
       data.forEach(d =>
         delete d.active
@@ -208,6 +210,7 @@ class Virtual extends Component {
             scrollTop={scrollTop}
             onScroll={onScroll}
             onDrag={this.dragHandler}
+            onClick={this.resetSelected}
           />
         </div>)
       }}

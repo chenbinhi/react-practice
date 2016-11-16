@@ -7,7 +7,6 @@ import styles from './styles.css'
 class DragSquare extends Component {
     constructor(props) {
         super(props)
-        // this.state = { active: props.active }
     }
     shouldComponentUpdate(nextProps, nextState) {
         // console.log(nextProps.id, 'shouldComponetUpdate:', nextProps)
@@ -15,13 +14,11 @@ class DragSquare extends Component {
     }
     componentWillReceiveProps(nextProps) {
         // console.log(nextProps.id, 'componentWillReceiveProps:', nextProps)
-        // this.setState({active: nextProps.active})
     }
-    clickHandler() {
-        // console.log(this.props.id, 'clicked!')
-        // let active = !this.state.active
-        // this.setState({ active })
+    clickHandler(e) {
+        console.log(this.props.id, 'clicked!')
         this.props.onClick && this.props.onClick(this.props.id)
+        e.stopPropagation()
     }
     render() {       
         const { coincide, fake, active, isDragging, connectDragSource, connectDragPreview, style } = this.props
