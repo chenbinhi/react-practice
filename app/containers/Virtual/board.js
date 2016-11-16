@@ -17,7 +17,7 @@ class Board extends Component {
         this.clickHandler = this.clickHandler.bind(this)
     }
     componentWillReceiveProps(nextPros) {
-            
+
     }
     componentDidUpdate() {
         if (this._lastData !== this.props.data) {
@@ -25,43 +25,52 @@ class Board extends Component {
             this._collection.recomputeCellSizesAndPositions()
             this._lastData = this.props.data
         }
+        // console.log(this._container.scrollLeft,
+        //     this._container.scrollTop,
+        //     this.props.scrollLeft,
+        //     this.props.scrollTop,
+        //     this._container.scrollWidth,
+        //     this._container.scrollHeight)
+        // this._container.scrollLeft = this.props.scrollLeft
+        // this._container.scrollTop = this.props.scrollTop
+        // this._container.scrollWidth = this.props.scrollWidth
+        // this._container.scrollHeight = this.props.scrollHeight
     }
     mouseDownHandler(e) {
-        console.log('down', e.clientX, e.clientY)
         let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container, this.props)
+        console.log('down', e.clientX, e.clientY, offset)
         this._style = {
             x: offset.x,
             y: offset.y
         }
     }
+
     mouseMoveHandler(e) {
         let s = this._style
         if (!s || s.x == undefined || s.y == undefined)
             return
         // console.log('move', e.clientX, e.clientY, s)
+        this._dragging = true
         let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container, this.props)
+        s.left = Math.min(offset.x, s.x),
+        s.top = Math.min(offset.y, s.y),
+        s.width = Math.abs(s.x - offset.x),
+        s.height = Math.abs(s.y - offset.y),
+
         this.setState({
             style: {
-                x: s.x,
-                y: s.y,
-                left: Math.min(offset.x, s.x) + "px",
-                top: Math.min(offset.y, s.y) + "px",
-                width: Math.abs(s.x - offset.x)+"px",
-                height: Math.abs(s.y - offset.y)+"px"
-            },
-            dragging: true
+                left: (s.left - this.props.scrollLeft) + "px",
+                top: (s.top - this.props.scrollTop) + "px",
+                width: s.width + "px",
+                height: s.height + "px"
+            }
         })
     }
     mouseUpHandler(e) {
-        let s = this.state.style
+        let s = this._style
         console.log('up', e.clientX, e.clientY, s)
-        if (s.width && s.height) {
-            this.props.onSelect && this.props.onSelect({
-                    left: parseInt(s.left),
-                    top: parseInt(s.top),
-                    width: parseInt(s.width),
-                    height: parseInt(s.height)
-            })
+        if (s && s.width && s.height) {
+            this.props.onSelect && this.props.onSelect(s)
         }
 
         this._style = null
@@ -71,8 +80,8 @@ class Board extends Component {
     }
 
     clickHandler(e) {
-        if (this.state.dragging) {
-            this.setState({ dragging: null })
+        if (this._dragging) {
+            this._dragging = null
         } else {
             console.log('clicked!')
             this.props.onClick && this.props.onClick(this.props.id)

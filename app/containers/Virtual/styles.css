@@ -34,9 +34,14 @@
 
 .board {
     border: 1px solid green;
+    overflow: auto;
     position: relative;
 }
 
+.boardContainer {
+    position: absolute;
+    overflow: hidden;
+}
 .select {
     border: 1px solid green;
     position: absolute;

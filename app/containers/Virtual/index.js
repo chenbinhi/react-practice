@@ -134,7 +134,7 @@ class Virtual extends Component {
         this.setState({ data })
         return
       }
-       
+
       let rect = id
       let { left, top, width, height } = rect
 
@@ -153,11 +153,17 @@ class Virtual extends Component {
     }
     resetSelected() {
       console.log('resetSelected')
-      let data = Array.from(this.state.data)
-      data.forEach(d =>
-        delete d.active
-      )
-      this.setState({ data })
+      let active = this.state.data.some(d => {
+          return d.active
+      })
+
+      if (active) {
+        let data = Array.from(this.state.data)
+        data.forEach(d =>
+          delete d.active
+        )
+        this.setState({ data })
+      }
     }
     cellRenderer ({ index, key, style }) {
       // console.log('cellRenderer', index, key, style)
@@ -228,6 +234,8 @@ class Virtual extends Component {
             }}
             scrollLeft={scrollLeft}
             scrollTop={scrollTop}
+            scrollWidth={scrollWidth}
+            scrollHeight={scrollHeight}
             onScroll={onScroll}
             onDrag={this.dragHandler}
             onClick={this.resetSelected}
