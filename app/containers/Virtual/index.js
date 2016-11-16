@@ -126,10 +126,30 @@ class Virtual extends Component {
     }
 
     addSelected(id) {
-      let index = id
-      let data = Array.from(this.state.data)
-      data[index].active = !data[index].active
-      this.setState({ data })
+      console.log('addSelected', id)
+      if (_.isNumber(id)) {
+        let index = id
+        let data = Array.from(this.state.data)
+        data[index].active = !data[index].active
+        this.setState({ data })
+        return
+      }
+       
+      let rect = id
+      let { left, top, width, height } = rect
+
+      let select = this.state.data.filter(d => {
+          if (d.x >= left && d.y >= top && d.x + d.width <= left + width && d.y + d.height <= top + height)
+            return true
+      })
+      // console.log('addSelected', select)
+      if (select.length > 0) {
+        let data = Array.from(this.state.data)
+        select.forEach(s => {
+          data[s.id].active = true
+        })
+        this.setState({ data })
+      }
     }
     resetSelected() {
       console.log('resetSelected')
@@ -211,6 +231,7 @@ class Virtual extends Component {
             onScroll={onScroll}
             onDrag={this.dragHandler}
             onClick={this.resetSelected}
+            onSelect={this.addSelected}
           />
         </div>)
       }}

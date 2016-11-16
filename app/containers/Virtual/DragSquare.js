@@ -7,6 +7,8 @@ import styles from './styles.css'
 class DragSquare extends Component {
     constructor(props) {
         super(props)
+        this.clickHandler = this.clickHandler.bind(this)
+        this.mouseDownHandler = this.mouseDownHandler.bind(this)
     }
     shouldComponentUpdate(nextProps, nextState) {
         // console.log(nextProps.id, 'shouldComponetUpdate:', nextProps)
@@ -19,6 +21,9 @@ class DragSquare extends Component {
         console.log(this.props.id, 'clicked!')
         this.props.onClick && this.props.onClick(this.props.id)
         e.stopPropagation()
+    }
+    mouseDownHandler(e) {
+         e.stopPropagation()
     }
     render() {       
         const { coincide, fake, active, isDragging, connectDragSource, connectDragPreview, style } = this.props
@@ -40,7 +45,9 @@ class DragSquare extends Component {
             nstyle.background = ''
         }
         return connectDragPreview(connectDragSource(
-            <div className={styles.drag} style={nstyle} onClick={this.clickHandler.bind(this)}
+            <div className={styles.drag} style={nstyle} 
+                onClick={this.clickHandler}
+                onMouseDown={this.mouseDownHandler}
                 ref={ref => this._container = ref}>
                 <div>{isDragging? 'true': 'false'}</div>
                 {this.props.children}

@@ -31,3 +31,13 @@
     padding: 0 5px 10px 0;*/
     color: red;
 }
+
+.board {
+    border: 1px solid green;
+    position: relative;
+}
+
+.select {
+    border: 1px solid green;
+    position: absolute;
+}
