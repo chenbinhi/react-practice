@@ -18,9 +18,16 @@
 .drag {
     border: 1px solid green;
     cursor: move; 
+    position: relative;
     /*margin: 5px;
     padding: 5px;*/
 }
+
+.dragIn {
+    border: 1px dashed green;
+    position: absolute;
+}
+
 
 .grid_container {
     border: 1px solid black;

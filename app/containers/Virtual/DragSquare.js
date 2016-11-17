@@ -39,9 +39,12 @@ class DragSquare extends Component {
          e.stopPropagation()
     }
     render() {       
-        const { coincide, fake, active, isDragging, connectDragSource, connectDragPreview, style } = this.props
+        const { coincide, hidden, merge, active, isDragging, connectDragSource, connectDragPreview, style } = this.props
         let nstyle = Object.assign({}, style)
-        if (fake) {
+        if (hidden) {
+            nstyle.display = 'none'
+        }
+        if (merge) {
             nstyle.border = '1px dashed green'
         } else {
             nstyle.border = '1px solid green'
@@ -50,7 +53,7 @@ class DragSquare extends Component {
             nstyle.background = 'hsla(0, 86%, 60%, 0.5)'
         } else if (active) {
             nstyle.background = 'hsla(120, 67%, 49%, 0.5)'
-        } else if (fake) {
+        } else if (merge) {
             nstyle.background = 'hsla(120, 67%, 49%, 0.1)'
         } else if (isDragging) {
             nstyle.background = 'hsla(50, 67%, 49%, 0.3)'
@@ -59,7 +62,15 @@ class DragSquare extends Component {
         }
 
         if (isDragging) {
-            this._active = this._active || this.props.onDrag(this.props.id)
+            if (!this._active) {
+                let active = this.props.onDrag(this.props.id)
+                this._active = _.cloneDeep(_.sortBy(active, 'seq'))
+                this._active.reduce((width, a) => {
+                    a.left = width
+                    a.top = 0
+                    return width + a.width
+                }, 0)
+            }
         } else {
             this._active = null
         }
@@ -70,10 +81,17 @@ class DragSquare extends Component {
                     ref={ref => this._container = ref}>
                     {
                         (isDragging) ? 
-                            <div>
-                                { this._active.map(a => <div key={a.id}>{a.id}</div>) }
-                            </div>
-                       :
+                            this._active.map(a => 
+                                <div className={styles.dragIn}
+                                    key={a.id}
+                                    style={{
+                                        left: a.left,
+                                        top: a.top,
+                                        width: a.width,
+                                        height: a.height 
+                                    }}
+                                >{ `${a.seq+1}: ${a.id+1}` }</div>)
+                        :
                             this.props.children
                     }
                 </div>), { captureDraggingState: true })
