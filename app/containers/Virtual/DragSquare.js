@@ -57,13 +57,25 @@ class DragSquare extends Component {
         } else {
             nstyle.background = ''
         }
+
+        if (isDragging) {
+            this._active = this._active || this.props.onDrag(this.props.id)
+        } else {
+            this._active = null
+        }
         return connectDragPreview(connectDragSource(
                 <div className={styles.drag} style={nstyle} 
                     onClick={this.clickHandler}
                     onMouseDown={this.mouseDownHandler}
                     ref={ref => this._container = ref}>
-                    <div>{isDragging? 'true': 'false'}</div>
-                    {this.props.children}
+                    {
+                        (isDragging) ? 
+                            <div>
+                                { this._active.map(a => <div key={a.id}>{a.id}</div>) }
+                            </div>
+                       :
+                            this.props.children
+                    }
                 </div>), { captureDraggingState: true })
     }
 }

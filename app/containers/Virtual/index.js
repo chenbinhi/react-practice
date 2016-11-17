@@ -38,7 +38,9 @@ class Virtual extends Component {
           d.id = id
           return d
       }, null)
-      this.state = { data, count: data.length }
+      this.state = { data }
+      this._count = data.length
+      this.getSelected = this.getSelected.bind(this)
       this.addSelected = this.addSelected.bind(this)
       this.resetSelected = this.resetSelected.bind(this)
       this.cellRenderer = this.cellRenderer.bind(this)
@@ -100,7 +102,7 @@ class Virtual extends Component {
       if (dragging) {
         data = Array.from(this.state.data)
 
-        let count = this.state.count
+        let count = this._count
         let seq = region.seq
         active.forEach(a => {
             let region = this.calRegion(seq, a.width, a.height)
@@ -112,7 +114,7 @@ class Virtual extends Component {
         })
         this.setState({ data })
       } else {
-        data = data.slice(0, this.state.count)
+        data = data.slice(0, this._count)
         if (!coincide) {
           let seq = region.seq
           active.forEach(a => {
@@ -126,6 +128,14 @@ class Virtual extends Component {
       }
     }
 
+    getSelected(id) {
+      let active = _.sortBy(this.state.data.filter(d => {
+          return !d.fake && (d.active || d.id === id)
+      }), 'seq')
+
+      console.log('getSelect', active)
+      return active
+    }
     addSelected(id) {
       console.log('addSelected', id)
       if (_.isNumber(id)) {
@@ -179,7 +189,7 @@ class Virtual extends Component {
           style={style}
           id={this.state.data[index].id}
           onClick={this.addSelected}
-          onDrag={this.dragHandler}
+          onDrag={this.getSelected}
           active={this.state.data[index].active}
           fake={this.state.data[index].fake}
           coincide={this.state.data[index].coincide}
