@@ -5,6 +5,8 @@ import { Collection } from 'react-virtualized'
 import ItemTypes from './Constans'
 import styles from './styles.css'
 
+const SCROLLMORE = 50
+
 class Board extends Component {
     constructor(props) {
         super(props)
@@ -25,16 +27,6 @@ class Board extends Component {
             this._collection.recomputeCellSizesAndPositions()
             this._lastData = this.props.data
         }
-        // console.log(this._container.scrollLeft,
-        //     this._container.scrollTop,
-        //     this.props.scrollLeft,
-        //     this.props.scrollTop,
-        //     this._container.scrollWidth,
-        //     this._container.scrollHeight)
-        // this._container.scrollLeft = this.props.scrollLeft
-        // this._container.scrollTop = this.props.scrollTop
-        // this._container.scrollWidth = this.props.scrollWidth
-        // this._container.scrollHeight = this.props.scrollHeight
     }
     mouseDownHandler(e) {
         let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container, this.props)
@@ -113,37 +105,86 @@ function calcParentOffset(offset, parent, scroll) {
 }
 
 function createHoveDebounce(wait) {
-    let WAITCOUNT = wait || 5
+    let WAITCOUNT = wait || 3
     let count = 0
     let last
 
     return function(offset) {
         if (last && last.x === offset.x && last.y === offset.y) {
-            if (count++ < WAITCOUNT || last.render)
+            if (count++ < WAITCOUNT || last.render) {
                 return
-            else
+            } else {
                 last.render = true
+                return true
+            }
+        } else {
+            last = offset
+            count = 0
+            return
+        }        
+    }
+}
+
+function createScrollDebounce(wait) {
+    let WAITCOUNT = wait || 3
+    let count = 0
+    let last
+
+    return function(offset) {
+        if (last && last.x === offset.x && last.y === offset.y) {
+            if (count++ < WAITCOUNT) {
+                return
+            } else {
+                count = 0
+                return true
+            }
         } else {
             last = offset
             count = 0
             return
         }
-
-        return true
     }
 }
 
 let hoverDebounce = createHoveDebounce()
+let scrollDebounce = createScrollDebounce()
 
 const spec = {
     hover(props, monitor, component){
         let endOffset =  monitor.getSourceClientOffset()
-        if (!hoverDebounce(endOffset))
-            return
 
-        let offset = calcParentOffset(endOffset, component._container, props)
-        let item = monitor.getItem()    
-        props.onDrag(item.id, offset, true)
+        let item = monitor.getItem()
+
+        if (scrollDebounce(endOffset)) {
+            // TODO: get item's offsetParent
+            let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
+            let scrollX = endOffset.x - rect.left // scroll left
+            if (scrollX >= 0) {
+                scrollX = (endOffset.x + item.width) - rect.right // scroll right
+                if (scrollX < 0)
+                    scrollX = 0
+            }
+            let scrollY = endOffset.y - rect.top
+            if (scrollY >= 0) {
+                scrollY = (endOffset.y + item.height) - rect.bottom
+                if (scrollY < 0)
+                    scrollY = 0
+            }
+                // console.log('calc', scrollX, scrollY,
+                //     `((${endOffset.x} + ${item.width}) - ${rect.right})`,
+                //     `((${endOffset.y} + ${item.height}) - ${rect.bottom})`)
+            if ( scrollX != 0 || scrollY != 0) {
+                console.log('hover scroll:', scrollX, scrollY)
+                scrollX = scrollX > 0 ? scrollX + SCROLLMORE  : scrollX - SCROLLMORE
+                scrollY = scrollY > 0 ? scrollY + SCROLLMORE : scrollY - SCROLLMORE
+                props.scroll && props.scroll({ x: scrollX, y: scrollY})
+            }
+        }
+
+        if (hoverDebounce(endOffset)) {
+            let offset = calcParentOffset(endOffset, component._container, props)
+            props.onDrag(item.id, offset, true)
+        }
     },
     // hover(props, monitor, component) {
     //     const cancelAnimationFrame = window.cancelAnimationFrame || (timeout => clearTimeout(timeout));

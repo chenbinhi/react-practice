@@ -43,6 +43,7 @@ class Virtual extends Component {
       this.resetSelected = this.resetSelected.bind(this)
       this.cellRenderer = this.cellRenderer.bind(this)
       this.dragHandler = this.dragHandler.bind(this)
+      this.scrollHandler = this.scrollHandler.bind(this)
       this.cellSizeAndPositionGetter = this.cellSizeAndPositionGetter.bind(this)
     }
     calRegion(seq, width, height) {
@@ -165,6 +166,10 @@ class Virtual extends Component {
         this.setState({ data })
       }
     }
+    scrollHandler(scroll) {
+      this._scrolled = false
+      this.setState({ scroll })
+    }
     cellRenderer ({ index, key, style }) {
       // console.log('cellRenderer', index, key, style)
       console.assert(this.state.data[index].fake || index === this.state.data[index].id, this.state.data[index], index)
@@ -201,7 +206,13 @@ class Virtual extends Component {
         return  (<div className={styles.container} >
         <ScrollSync>
       {({ clientHeight, clientWidth, onScroll, scrollHeight, scrollLeft, scrollTop, scrollWidth }) => {
-        // console.log(scrollLeft, scrollTop, clientHeight, clientWidth, scrollHeight, scrollWidth)p
+        // console.log(scrollLeft, scrollTop, clientHeight, clientWidth, scrollHeight, scrollWidth)
+        if (!this._scrolled && this.state.scroll) {
+          console.log('auto scroll:', this.state.scroll.x, this.state.scroll.y)
+          scrollLeft += this.state.scroll.x
+          screenTop += this.state.scroll.y
+          this._scrolled = true
+        }
         return (
         <div>
        {/* 
@@ -234,8 +245,7 @@ class Virtual extends Component {
             }}
             scrollLeft={scrollLeft}
             scrollTop={scrollTop}
-            scrollWidth={scrollWidth}
-            scrollHeight={scrollHeight}
+            scroll={this.scrollHandler}
             onScroll={onScroll}
             onDrag={this.dragHandler}
             onClick={this.resetSelected}
