@@ -80,7 +80,7 @@ const spec = {
     // },
 
     beginDrag(props, monitor, component) { 
-        return { id: props.id, width: props.style.width, height: props.style.height }
+        return { id: props.id, width: props.style.width, height: props.style.height, offsetParent:  component._container.offsetParent }
     },
 
     isDragging(props, monitor) {

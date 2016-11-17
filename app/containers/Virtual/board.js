@@ -51,10 +51,10 @@ class Board extends Component {
 
         this.setState({
             style: {
-                left: (s.left - this.props.scrollLeft) + "px",
-                top: (s.top - this.props.scrollTop) + "px",
-                width: s.width + "px",
-                height: s.height + "px"
+                left: (s.left - this.props.scrollLeft),
+                top: (s.top - this.props.scrollTop),
+                width: s.width,
+                height: s.height
             }
         })
     }
@@ -87,6 +87,11 @@ class Board extends Component {
             onMouseDown={this.mouseDownHandler}
             onMouseMove={this.mouseMoveHandler}
             onMouseUp={this.mouseUpHandler}
+            style={{
+                width: this.props.width,
+                height: this.props.height,
+                overflow: 'hidden'
+            }}
             ref={ ref => this._container = ref } >
             <Collection {...this.props} ref={ ref => this._collection = ref } />
             <div className={styles.select} style={this.state.style}></div>
@@ -156,8 +161,8 @@ const spec = {
         let item = monitor.getItem()
 
         if (scrollDebounce(endOffset)) {
-            // TODO: get item's offsetParent
-            let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
+            //let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
+            let rect = item.offsetParent.getBoundingClientRect()
             let scrollX = endOffset.x - rect.left // scroll left
             if (scrollX >= 0) {
                 scrollX = (endOffset.x + item.width) - rect.right // scroll right
@@ -174,7 +179,7 @@ const spec = {
                 //     `((${endOffset.x} + ${item.width}) - ${rect.right})`,
                 //     `((${endOffset.y} + ${item.height}) - ${rect.bottom})`)
             if ( scrollX != 0 || scrollY != 0) {
-                console.log('hover scroll:', scrollX, scrollY)
+                // console.log('hover scroll:', scrollX, scrollY)
                 scrollX = scrollX > 0 ? scrollX + SCROLLMORE  : scrollX - SCROLLMORE
                 scrollY = scrollY > 0 ? scrollY + SCROLLMORE : scrollY - SCROLLMORE
                 props.scroll && props.scroll({ x: scrollX, y: scrollY})
@@ -182,7 +187,7 @@ const spec = {
         }
 
         if (hoverDebounce(endOffset)) {
-            let offset = calcParentOffset(endOffset, component._container, props)
+            let offset = calcParentOffset(endOffset, item.offsetParent, props)
             props.onDrag(item.id, offset, true)
         }
     },
@@ -261,7 +266,7 @@ const spec = {
     drop(props, monitor, component) {
         let item = monitor.getItem()
         let endOffset =  monitor.getSourceClientOffset()
-        let offset = calcParentOffset(endOffset, component._container, props)
+        let offset = calcParentOffset(endOffset, item.offsetParent, props)
 
         props.onDrag(item.id, offset)
     }
