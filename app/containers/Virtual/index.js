@@ -275,7 +275,7 @@ class Virtual extends Component {
             onScroll={onScroll}
             onDrag={this.dragHandler}
             onClick={this.resetSelected}
-            onSelect={this.addSelected}
+            onRectSelect={this.addSelected}
           />
         </div>)
       }}

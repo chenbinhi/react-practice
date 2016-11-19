@@ -1,22 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react'
+import { findDOMNode } from 'react-dom'
+
 import { DropTarget } from 'react-dnd'
 import { Collection } from 'react-virtualized'
+
+import RectSelect from './RectSelect'
 
 import ItemTypes from './Constans'
 import styles from './styles.css'
 
 const SCROLLMORE = 50
 
+const RectSelectCollection = RectSelect(Collection)
+
 class Board extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            style: {}
-        }
-        this.mouseDownHandler = this.mouseDownHandler.bind(this)
-        this.mouseMoveHandler = this.mouseMoveHandler.bind(this)
-        this.mouseUpHandler = this.mouseUpHandler.bind(this)
-        this.clickHandler = this.clickHandler.bind(this)
     }
     componentWillReceiveProps(nextPros) {
 
@@ -24,78 +23,15 @@ class Board extends Component {
     componentDidUpdate() {
         if (this._lastData !== this.props.data) {
             console.log('collection reload')
-            this._collection.recomputeCellSizesAndPositions()
+            this._collection.wrappedInstance.recomputeCellSizesAndPositions()
             this._lastData = this.props.data
         }
     }
-    mouseDownHandler(e) {
-        let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container, this.props)
-        console.log('down', e.clientX, e.clientY, offset)
-        this._style = {
-            x: offset.x,
-            y: offset.y
-        }
-    }
-
-    mouseMoveHandler(e) {
-        let s = this._style
-        if (!s || s.x == undefined || s.y == undefined)
-            return
-        // console.log('move', e.clientX, e.clientY, s)
-        this._dragging = true
-        let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container, this.props)
-        s.left = Math.min(offset.x, s.x),
-        s.top = Math.min(offset.y, s.y),
-        s.width = Math.abs(s.x - offset.x),
-        s.height = Math.abs(s.y - offset.y),
-
-        this.setState({
-            style: {
-                left: (s.left - this.props.scrollLeft),
-                top: (s.top - this.props.scrollTop),
-                width: s.width,
-                height: s.height
-            }
-        })
-    }
-    mouseUpHandler(e) {
-        let s = this._style
-        console.log('up', e.clientX, e.clientY, s)
-        if (s && s.width && s.height) {
-            this.props.onSelect && this.props.onSelect(s)
-        }
-
-        this._style = null
-        this.setState({
-            style: {}
-        })
-    }
-
-    clickHandler(e) {
-        if (this._dragging) {
-            this._dragging = null
-        } else {
-            console.log('clicked!')
-            this.props.onClick && this.props.onClick(this.props.id)
-        }
-    }
-    
     render() {
-        return this.props.connectDropTarget(<div
-            className={styles.board} 
-            onClick={this.clickHandler}
-            onMouseDown={this.mouseDownHandler}
-            onMouseMove={this.mouseMoveHandler}
-            onMouseUp={this.mouseUpHandler}
-            style={{
-                width: this.props.width,
-                height: this.props.height,
-                overflow: 'hidden'
-            }}
-            ref={ ref => this._container = ref } >
-            <Collection {...this.props} ref={ ref => this._collection = ref } />
-            <div className={styles.select} style={this.state.style}></div>
-        </div>)
+        return this.props.connectDropTarget(
+            <div>
+            <RectSelectCollection {...this.props} ref={ ref => this._collection = ref } />
+            </div>)
     }
 }
 
@@ -162,6 +98,7 @@ const spec = {
 
         if (scrollDebounce(endOffset)) {
             //let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
+            // console.log(findDOMNode(component._collection), findDOMNode(component._collection._collectionView), findDOMNode(component._collection._collectionView._scrollingContainer))
             let rect = item.offsetParent.getBoundingClientRect()
             let scrollX = endOffset.x - rect.left // scroll left
             if (scrollX >= 0) {

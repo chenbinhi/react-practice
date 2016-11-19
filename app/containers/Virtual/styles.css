@@ -49,6 +49,11 @@
     position: absolute;
     overflow: hidden;
 }
+
+.rectSelect {
+    position: absolute;
+    overflow: auto;
+}
 .select {
     border: 1px solid green;
     position: absolute;
