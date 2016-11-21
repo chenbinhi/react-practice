@@ -87,10 +87,10 @@ class Virtual extends Component {
       }
 
       let data = this.state.data
-      let active = _.sortBy(data.filter((d) => {
+      let active = data.filter((d) => {
         return (d.active || d.id === fromId)
-      }), 'seq')
-      let orig = active.reduce((m, a) => {
+      })
+      let all = active.reduce((m, a) => {
         m.width += a.width
         m.height = a.height // height 必须等高
         return m
@@ -98,64 +98,65 @@ class Virtual extends Component {
         width: 0,
         height: 0,
       })
-      let region = this.calRegion(seq, orig.width, orig.height)
+      let region = this.calRegion(seq, all.width, all.height)
       // TODO: 检查尾部是否超过范围
       let coincide = _.find(data, (d) => d.id !== fromId && !d.active && region.y === d.y && !(region.x + region.width <= d.x || region.x >= d.x + d.width))
       if (coincide) {
         console.log('coincide', region, coincide)
       }
 
+      data = Array.from(this.state.data)
       if (dragging) {
-        data = Array.from(this.state.data)
+        active.forEach(a => {
+            if (!a.orig) {
+              data[a.id].orig = Object.assign({}, a)
+            }
 
-        if (!this._select) {
-          this._select = _.cloneDeep(active)
-          active.forEach(a => {
-              if (a.id !== fromId) {
-                data[a.id].hidden = true
-                data[a.id].width = 0
-                data[a.id].height = 0
-              }
-          })
-        }
-
-        region.merge = true
-        region.coincide = !!coincide
-        Object.assign(data[fromId], region)
-
-        this.setState({ data })
+            if (a.id !== fromId) {
+              data[a.id].hidden = true
+              data[a.id].width = 0
+              data[a.id].height = 0
+            } else {
+              region.merge = true
+              region.coincide = !!coincide
+              Object.assign(data[fromId], region)
+            }
+        })
       } else {
-        if (!this._select) {
-          console.assert(this._select)
-          console.log('no old', this._select)
-          return
-        }
-
-        data = Array.from(this.state.data)
-        if (!coincide) {
-          let seq = region.seq
-          this._select.forEach(a => {
-            let region = this.calRegion(seq, a.width, a.height)
-            region.id = a.id
-            region.active = true
-            data[a.id] = region
-            seq += a.width/interval
-          })
-        } else {
-          this._select.forEach(o => {
-            data[o.id] = o
-          })
-        }
-        this.setState({ data })
-        this._select = null
+        active = _.sortBy(active, a => a.orig.seq)
+        let seq = region.seq
+        active.forEach(a => {
+            if (a.orig) {
+              data[a.id] = a.orig
+            }
+            
+            let d = data[a.id]
+            console.assert(d.id === a.id)
+            if (!coincide) {
+                let region = this.calRegion(seq, d.width, d.height)
+                region.id = d.id
+                region.active = true
+                data[d.id] = region
+                seq += d.width/interval
+            }
+        })
       }
+
+      this.setState({ data })
     }
 
     getSelected(id) {
       let active = this.state.data.filter(d => {
           console.assert(d.width >= 0, d)
           return (d.active || d.id === id)
+      }).map(a => {
+        console.log(a)
+        if (a.orig) {
+          return a.orig
+        }
+        return a
       })
+      // active = _.sortBy(active, 'seq')
 
       console.log('getSelect', active)
       return active
