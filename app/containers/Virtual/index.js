@@ -29,7 +29,7 @@ class Virtual extends Component {
       let data = _.sortBy(_.take(all, _.random(1, tableCount * intervalCount /2)).map(seq => {
           return this.calRegion(seq)
       }), 'seq')
-      
+
       data.reduce((last, d, id) => {
           if (last) {
             if (d.x + d.width > (interval + intervalGap) * intervalCount) {
@@ -114,8 +114,6 @@ class Virtual extends Component {
 
             if (a.id !== fromId) {
               data[a.id].hidden = true
-              data[a.id].width = 0
-              data[a.id].height = 0
             } else {
               region.merge = true
               region.coincide = !!coincide
@@ -127,9 +125,9 @@ class Virtual extends Component {
         let seq = region.seq
         active.forEach(a => {
             if (a.orig) {
-              data[a.id] = a.orig
+              data[a.id] = Object.assign({}, a.orig)
             }
-            
+
             let d = data[a.id]
             console.assert(d.id === a.id)
             if (!coincide) {
@@ -146,16 +144,17 @@ class Virtual extends Component {
     }
 
     getSelected(id) {
-      let active = this.state.data.filter(d => {
+      let active = _.cloneDeep(this.state.data.filter(d => {
           console.assert(d.width >= 0, d)
           return (d.active || d.id === id)
       }).map(a => {
-        console.log(a)
         if (a.orig) {
           return a.orig
+        } else {
+          return a
         }
-        return a
-      })
+      }))
+
       // active = _.sortBy(active, 'seq')
 
       console.log('getSelect', active)
@@ -251,7 +250,7 @@ class Virtual extends Component {
         }
         return (
         <div>
-       {/* 
+       {/*
           <Grid
           className={styles.grid_container}
           cellRenderer={this.gridCellRenderer}
@@ -267,7 +266,7 @@ class Virtual extends Component {
           scrollTop={scrollTop}
           scrollLeft={scrollLeft}
           />
-        */} 
+        */}
           <Board
             data={this.state.data}
             className={styles.collection_container}
@@ -289,8 +288,8 @@ class Virtual extends Component {
       }}
         </ScrollSync>
         </div>)
-        
+
     }
-} 
+}
 
 export default DragDropContext(Html5Backend)(Virtual);
