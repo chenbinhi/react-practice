@@ -97,7 +97,7 @@ class DragSquare extends Component {
                         :
                             this.props.children
                     }
-                </div>), { captureDraggingState: true })
+                </div>), { captureDraggingState: true, anchorX: 0, anchorY: 0 })
     }
 }
 
