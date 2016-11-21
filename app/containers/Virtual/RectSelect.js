@@ -2,6 +2,9 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 
+import throttle from 'lodash.throttle';
+import raf from 'raf'
+
 import styles from './styles.css'
 
 function calcParentOffset(offset, parent) {
@@ -30,16 +33,45 @@ export default function createRectSelect(WrapComponent) {
 
             }
             componentDidMount() {
-                this._container = findDOMNode(this.wrappedInstance);
+                this.wrappedDOM = findDOMNode(this.wrappedInstance);
             }
+            componentWillUnmount() {
+                if (this.frame)
+                    raf.cancel(this.frame)
+                this.detach()
+            }
+
             componentDidUpdate() {
             }
+
+
+            attach() {
+                window.document.body.addEventListener('mousemove', this.mouseMoveHandler)
+                window.document.body.addEventListener('mouseup', this.mouseUpHandler)
+                this.attached = true;
+            }
+
+            detach() {
+                window.document.body.removeEventListener('mousemove', this.mouseMoveHandler);
+                window.document.body.removeEventListener('mouseup', this.mouseUpHandler);
+                this.attached = false;
+            }
+
             mouseDownHandler(e) {
-                let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container)
+                let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this.wrappedDOM)
                 console.log('down', e.clientX, e.clientY, offset)
                 this._style = {
                     x: offset.x,
                     y: offset.y
+                }
+
+                if (this.frame) {
+                   raf.cancel(this.frame)
+                   this.frame = null
+                }
+
+                if (!this.attached) {
+                    this.attach()
                 }
             }
 
@@ -48,23 +80,32 @@ export default function createRectSelect(WrapComponent) {
                 if (!s || s.x == undefined || s.y == undefined)
                     return
 
-                // console.log('move', e.clientX, e.clientY, s)
+                //console.log('move', e.clientX, e.clientY, this.wrappedDOM.scrollLeft, this.wrappedDOM.scrollTop)
                 this._dragging = true
 
-                let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this._container)
-                s.left = Math.min(offset.x, s.x),
-                s.top = Math.min(offset.y, s.y),
-                s.width = Math.abs(s.x - offset.x),
-                s.height = Math.abs(s.y - offset.y),
+                let offset = calcParentOffset({ x: e.clientX, y: e.clientY }, this.wrappedDOM)
+                s.left = Math.min(offset.x, s.x)
+                s.top = Math.min(offset.y, s.y)
+                s.width = Math.abs(s.x - offset.x)
+                s.height = Math.abs(s.y - offset.y)
 
-                this.setState({
-                    style: {
-                        left: (s.left - this._container.scrollLeft),
-                        top: (s.top - this._container.scrollTop),
-                        width: s.width,
-                        height: s.height
+                if (!this.frame) {
+                    let move = () => {
+                        let s = this._style
+                        // console.log('move refresh', s, this.wrappedDOM.scrollLeft, this.wrappedDOM.scrollTop)
+                        this.setState({
+                            style: {
+                                left: (s.left - this.wrappedDOM.scrollLeft),
+                                top: (s.top - this.wrappedDOM.scrollTop),
+                                width: s.width,
+                                height: s.height
+                            }
+                        })
+                        this.frame = raf(move)
                     }
-                })
+                    
+                    move()
+                }
             }
             mouseUpHandler(e) {
                 let s = this._style
@@ -73,10 +114,18 @@ export default function createRectSelect(WrapComponent) {
                     this.props.onRectSelect && this.props.onRectSelect(s)
                 }
 
+                if (this.frame) {
+                   raf.cancel(this.frame)
+                   this.frame = null
+                }
                 this._style = null
                 this.setState({
                     style: {}
                 })
+
+                if (this.attached) {
+                    this.detach()
+                }
             }
 
             clickHandler(e) {

@@ -31,8 +31,14 @@ class Virtual extends Component {
       }), 'seq')
       
       data.reduce((last, d, id) => {
-          if (last && last.x + last.width > d.x) {
-            last.width = d.x - last.x
+          if (last) {
+            if (d.x + d.width > (interval + intervalGap) * intervalCount) {
+              d.width = (interval + intervalGap) * intervalCount - d.x
+            }
+            if (d.y === last.y && last.x + last.width > d.x) {
+              last.width = d.x - last.x
+            }
+            console.assert(last.width > 0, d, last)
             console.assert(last.seq < d.seq)
           }
           d.id = id
@@ -120,6 +126,7 @@ class Virtual extends Component {
         this.setState({ data })
       } else {
         if (!this._select) {
+          console.assert(this._select)
           console.log('no old', this._select)
           return
         }
@@ -130,6 +137,7 @@ class Virtual extends Component {
           this._select.forEach(a => {
             let region = this.calRegion(seq, a.width, a.height)
             region.id = a.id
+            region.active = true
             data[a.id] = region
             seq += a.width/interval
           })
@@ -145,6 +153,7 @@ class Virtual extends Component {
 
     getSelected(id) {
       let active = this.state.data.filter(d => {
+          console.assert(d.width >= 0, d)
           return (d.active || d.id === id)
       })
 
@@ -269,8 +278,6 @@ class Virtual extends Component {
             style={{
               // position: "absolute"
             }}
-            scrollLeft={scrollLeft}
-            scrollTop={scrollTop}
             scroll={this.scrollHandler}
             onScroll={onScroll}
             onDrag={this.dragHandler}

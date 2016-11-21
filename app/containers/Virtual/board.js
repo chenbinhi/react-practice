@@ -4,6 +4,14 @@ import { findDOMNode } from 'react-dom'
 import { DropTarget } from 'react-dnd'
 import { Collection } from 'react-virtualized'
 
+import withScrolling, { createVerticalStrength, createHorizontalStrength } from 'react-dnd-scrollzone';
+
+const ScrollZoneCollection = withScrolling(Collection)
+const vStrength = createVerticalStrength(100)
+const hStrength = createHorizontalStrength(100)
+
+
+
 import RectSelect from './RectSelect'
 
 import ItemTypes from './Constans'
@@ -11,7 +19,7 @@ import styles from './styles.css'
 
 const SCROLLMORE = 50
 
-const RectSelectCollection = RectSelect(Collection)
+const RectSelectCollection = RectSelect(ScrollZoneCollection)
 
 class Board extends Component {
     constructor(props) {
@@ -23,7 +31,7 @@ class Board extends Component {
     componentDidUpdate() {
         if (this._lastData !== this.props.data) {
             console.log('collection reload')
-            this._collection.wrappedInstance.recomputeCellSizesAndPositions()
+            this._collection.wrappedInstance.wrappedInstance.recomputeCellSizesAndPositions()
             this._lastData = this.props.data
         }
     }
@@ -35,15 +43,16 @@ class Board extends Component {
     }
 }
 
-function calcParentOffset(offset, parent, scroll) {
+function calcParentOffset(offset, parent) {
     let rect = parent.getBoundingClientRect()
-    let x = offset.x + scroll.scrollLeft - rect.left
-    let y = offset.y + scroll.scrollTop - rect.top
+    let x = offset.x + parent.scrollLeft - rect.left
+    let y = offset.y + parent.scrollTop - rect.top
     // console.log('calc', x, y,
-    //     `(${offset.x} + ${scroll.scrollLeft} - ${rect.left})`,
-    //     `(${offset.y} + ${scroll.scrollTop} - ${rect.top})`)
+    //     `(${offset.x} + ${parent.scrollLeft} - ${rect.left})`,
+    //     `(${offset.y} + ${parent.scrollTop} - ${rect.top})`)
     return { x, y }
 }
+
 
 function createHoveDebounce(wait) {
     let WAITCOUNT = wait || 3
@@ -82,7 +91,7 @@ function createScrollDebounce(wait) {
         } else {
             last = offset
             count = 0
-            return
+            return true
         }
     }
 }
@@ -96,35 +105,35 @@ const spec = {
 
         let item = monitor.getItem()
 
-        if (scrollDebounce(endOffset)) {
-            //let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
-            // console.log(findDOMNode(component._collection), findDOMNode(component._collection._collectionView), findDOMNode(component._collection._collectionView._scrollingContainer))
-            let rect = item.offsetParent.getBoundingClientRect()
-            let scrollX = endOffset.x - rect.left // scroll left
-            if (scrollX >= 0) {
-                scrollX = (endOffset.x + item.width) - rect.right // scroll right
-                if (scrollX < 0)
-                    scrollX = 0
-            }
-            let scrollY = endOffset.y - rect.top
-            if (scrollY >= 0) {
-                scrollY = (endOffset.y + item.height) - rect.bottom
-                if (scrollY < 0)
-                    scrollY = 0
-            }
-                // console.log('calc', scrollX, scrollY,
-                //     `((${endOffset.x} + ${item.width}) - ${rect.right})`,
-                //     `((${endOffset.y} + ${item.height}) - ${rect.bottom})`)
-            if ( scrollX != 0 || scrollY != 0) {
-                // console.log('hover scroll:', scrollX, scrollY)
-                scrollX = scrollX > 0 ? scrollX + SCROLLMORE  : scrollX - SCROLLMORE
-                scrollY = scrollY > 0 ? scrollY + SCROLLMORE : scrollY - SCROLLMORE
-                props.scroll && props.scroll({ x: scrollX, y: scrollY})
-            }
-        }
+        // if (scrollDebounce(endOffset)) {
+        //     //let rect = component._collection._collectionView._scrollingContainer.getBoundingClientRect()
+        //     // console.log(findDOMNode(component._collection), findDOMNode(component._collection._collectionView), findDOMNode(component._collection._collectionView._scrollingContainer))
+        //     let rect = item.offsetParent.getBoundingClientRect()
+        //     let scrollX = endOffset.x - rect.left // scroll left
+        //     if (scrollX >= 0) {
+        //         scrollX = (endOffset.x + item.width) - rect.right // scroll right
+        //         if (scrollX < 0)
+        //             scrollX = 0
+        //     }
+        //     let scrollY = endOffset.y - rect.top
+        //     if (scrollY >= 0) {
+        //         scrollY = (endOffset.y + item.height) - rect.bottom
+        //         if (scrollY < 0)
+        //             scrollY = 0
+        //     }
+        //         // console.log('calc', scrollX, scrollY,
+        //         //     `((${endOffset.x} + ${item.width}) - ${rect.right})`,
+        //         //     `((${endOffset.y} + ${item.height}) - ${rect.bottom})`)
+        //     if ( scrollX != 0 || scrollY != 0) {
+        //         // console.log('hover scroll:', scrollX, scrollY)
+        //         scrollX = scrollX > 0 ? scrollX + SCROLLMORE  : scrollX - SCROLLMORE
+        //         scrollY = scrollY > 0 ? scrollY + SCROLLMORE : scrollY - SCROLLMORE
+        //         props.scroll && props.scroll({ x: scrollX, y: scrollY})
+        //     }
+        // }
 
         if (hoverDebounce(endOffset)) {
-            let offset = calcParentOffset(endOffset, item.offsetParent, props)
+            let offset = calcParentOffset(endOffset, item.offsetParent)
             props.onDrag(item.id, offset, true)
         }
     },
@@ -203,7 +212,7 @@ const spec = {
     drop(props, monitor, component) {
         let item = monitor.getItem()
         let endOffset =  monitor.getSourceClientOffset()
-        let offset = calcParentOffset(endOffset, item.offsetParent, props)
+        let offset = calcParentOffset(endOffset, item.offsetParent)
 
         props.onDrag(item.id, offset)
     }

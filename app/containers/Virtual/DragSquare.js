@@ -65,12 +65,14 @@ class DragSquare extends Component {
             if (!this._active) {
                 let active = this.props.onDrag(this.props.id)
                 this._active = _.cloneDeep(_.sortBy(active, 'seq'))
-                this._active.reduce((width, a) => {
+                this._width = this._active.reduce((width, a) => {
                     a.left = width
                     a.top = 0
                     return width + a.width
                 }, 0)
             }
+
+            nstyle.width = this._width
         } else {
             this._active = null
         }
