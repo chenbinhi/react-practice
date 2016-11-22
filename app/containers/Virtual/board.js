@@ -12,8 +12,8 @@ const hStrength = createHorizontalStrength(100)
 
 
 
+// import MyDragLayer from './MyDragLayer'
 import RectSelect from './RectSelect'
-
 import ItemTypes from './Constans'
 import styles from './styles.css'
 
@@ -38,7 +38,7 @@ class Board extends Component {
     render() {
         return this.props.connectDropTarget(
             <div>
-            <RectSelectCollection {...this.props} ref={ ref => this._collection = ref } />
+                <RectSelectCollection {...this.props} ref={ ref => this._collection = ref } />
             </div>)
     }
 }

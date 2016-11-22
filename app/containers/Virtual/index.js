@@ -121,7 +121,7 @@ class Virtual extends Component {
             }
         })
       } else {
-        active = _.sortBy(active, a => a.orig.seq)
+        active = _.sortBy(active, a => a.orig ? a.orig.seq : a.seq)
         let seq = region.seq
         active.forEach(a => {
             if (a.orig) {
