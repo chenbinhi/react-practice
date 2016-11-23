@@ -239,54 +239,58 @@ class Virtual extends Component {
     }
     render() {
         return  (<div className={styles.container} >
-        <ScrollSync>
-          {({ clientHeight, clientWidth, onScroll, scrollHeight, scrollLeft, scrollTop, scrollWidth }) => {
-            // console.log(scrollLeft, scrollTop, clientHeight, clientWidth, scrollHeight, scrollWidth)
-            if (!this._scrolled && this.state.scroll) {
-              console.log('auto scroll:', this.state.scroll.x, this.state.scroll.y)
-              scrollLeft += this.state.scroll.x
-              screenTop += this.state.scroll.y
-              this._scrolled = true
-            }
-            return (
-            <div>
-          {/*
-              <Grid
-              className={styles.grid_container}
-              cellRenderer={this.gridCellRenderer}
-              columnCount={intervalCount}
-              rowCount={tableCount}
-              columnWidth={interval}
-              rowHeight={tableWidth}
-              height={boardHeight}
-              width={boardWidth}
-              style={{
-                // position: "absolute"
-              }}
-              scrollTop={scrollTop}
-              scrollLeft={scrollLeft}
-              />
-            */}
-              <Board
-                data={this.state.data}
-                className={styles.collection_container}
-                cellCount={this.state.data.length}
-                cellRenderer={this.cellRenderer}
-                cellSizeAndPositionGetter={this.cellSizeAndPositionGetter}
-                height={boardHeight}
-                width={boardWidth}
-                style={{
-                  // position: "absolute"
+          <AutoSizer>
+          { ({ width: boardWidth, height: boardHeight }) =>{
+              console.log(boardWidth, boardHeight)
+              return <ScrollSync>
+                {({ clientHeight, clientWidth, onScroll, scrollHeight, scrollLeft, scrollTop, scrollWidth }) => {
+                  // console.log(scrollLeft, scrollTop, clientHeight, clientWidth, scrollHeight, scrollWidth)
+                  if (!this._scrolled && this.state.scroll) {
+                    console.log('auto scroll:', this.state.scroll.x, this.state.scroll.y)
+                    scrollLeft += this.state.scroll.x
+                    screenTop += this.state.scroll.y
+                    this._scrolled = true
+                  }
+                  return (
+                  <div>
+                    <Grid
+                    className={styles.grid_container}
+                    cellRenderer={this.gridCellRenderer}
+                    columnCount={intervalCount}
+                    rowCount={tableCount}
+                    columnWidth={interval}
+                    rowHeight={tableWidth}
+                    height={boardHeight}
+                    width={boardWidth}
+                    style={{
+                      // position: "absolute"
+                    }}
+                    scrollTop={scrollTop}
+                    scrollLeft={scrollLeft}
+                    />
+                    <Board
+                      data={this.state.data}
+                      className={styles.collection_container}
+                      cellCount={this.state.data.length}
+                      cellRenderer={this.cellRenderer}
+                      cellSizeAndPositionGetter={this.cellSizeAndPositionGetter}
+                      height={boardHeight}
+                      width={boardWidth}
+                      style={{
+                        // position: "absolute"
+                      }}
+                      scroll={this.scrollHandler}
+                      onScroll={onScroll}
+                      onDrag={this.dragHandler}
+                      onClick={this.resetSelected}
+                      onRectSelect={this.addSelected}
+                    />
+                  </div>)
                 }}
-                scroll={this.scrollHandler}
-                onScroll={onScroll}
-                onDrag={this.dragHandler}
-                onClick={this.resetSelected}
-                onRectSelect={this.addSelected}
-              />
-            </div>)
-          }}
-        </ScrollSync>
+              </ScrollSync>
+            }
+          }
+          </AutoSizer>
         </div>)
 
     }
