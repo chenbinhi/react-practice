@@ -1,5 +1,17 @@
 import React, { PropTypes, Component } from 'react';
-import { reduxForm } from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
+import { RadioButton } from 'material-ui/RadioButton'
+import MenuItem from 'material-ui/MenuItem'
+
+import {
+    Checkbox,
+    RadioButtonGroup,
+    SelectField,
+    TextField,
+    Toggle
+} from 'redux-form-material-ui'
+
+
 
 // const EventForm = (props) => {
 //     const { fields: { username, password }, handleSubmit } = props
@@ -11,8 +23,6 @@ import { reduxForm } from 'redux-form'
 //         </form>
 //     );
 // };
-
-
 class EventForm extends Component {
     handleSubmit(e) {
         alert('form data: ' + JSON.stringify(e, (k, v) => {
@@ -21,42 +31,27 @@ class EventForm extends Component {
             return v
         }))
     }
+
     render() {
-        const { fields: { username, password, email, sex, join, city, file: { value: _, ...fileRest } }, handleSubmit } = this.props
+        const { handleSubmit, reset } = this.props
         return (
             <form onSubmit={handleSubmit(this.handleSubmit)}>
+                <Field name='username' hintText='用户名' floatingLabelText='用户名' component={TextField} />
+                <Field name='password' hintText='密码' floatingLabelText='密码' type='password' component={TextField} />
+                <Field name='sex' component={RadioButtonGroup}>
+                    <RadioButton value='男' label='男' />
+                    <RadioButton value='女' label='女' />
+                </Field>
+                <Field name='join' label='加入' component={Checkbox} />
+                <Field name='city' hintText='城市' floatingLabelText='城市' component={SelectField} >
+                    <MenuItem value='成都' primaryText='成都' type='text' />
+                    <MenuItem value='北京' primaryText='北京' />
+                    <MenuItem value='上海' primaryText='上海'/>
+                </Field>
+                <Field name='files' multiple type='file'  hintText='上传文件名' floatingLabelText='上传文件名' component={TextField}/>
                 <div>
-                <lable>用户名</lable>
-                <input placeholder='用户名' type='text' {...username} />
-                </div>
-                <div>
-                <lable>密码</lable>
-                <input placeholder='密码' type='text' {...password} />
-                </div>
-                <div>
-                <lable>性别</lable>
-                <input type='radio' {...sex} value='1' checked={sex.value == '1'} />男
-                <input type='radio' {...sex} value={2} checked={sex.value == '2'} />女
-                </div>
-                <div>
-                    <lable>加入</lable>
-                    <input type='checkbox' {...join} value={1} checked={join.value} />
-                </div>
-                <div>
-                    <lable>城市</lable>
-                    <select {...city}>
-                        <option value='0'></option>
-                        <option value='1'>成都</option>
-                        <option value='2'>北京</option>
-                        <option value='3'>上海</option>
-                    </select>
-                </div>
-                <div>
-                    <label>上传</label>
-                    <input multiple type='file' {...fileRest}/>
-                </div>
-                <div>
-                <button type='submit'>提交</button>
+                    <button type='submit'>提交</button>
+                    <button type='button' onClick={reset}>重置</button>
                 </div>
             </form>
         );
@@ -70,7 +65,12 @@ EventForm.PropTypes = {
 
 export default reduxForm({
     form: 'EventForm',
-    fields: [ 'username', 'password', 'sex', 'join', 'city', 'file' ]
+    initialValues: {
+        username: 'myname',
+        password: 'pass',
+        sex: '女',
+        join: true,
+        city: '成都',
+    }
 }, state => ({
-    initialValues: state.initFormData.form
 }))(EventForm);

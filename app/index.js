@@ -9,6 +9,14 @@ import reducers from './reducers'
 import createStore from './store'
 import routes from './routes'
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+import injectTapEventPlugin from 'react-tap-event-plugin'
+
+injectTapEventPlugin()
+
+
 //import DevTools from './DevTools'
 
 
@@ -20,10 +28,12 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDom.render(
     <Provider store={store}>
-    <div>
-        <Router history={history} routes={routes} />
-        { /*<DevTools />*/ }
-    </div>
+        <MuiThemeProvider muiTheme={getMuiTheme()} >
+            <div>
+                <Router history={history} routes={routes} />
+                { /*<DevTools />*/ }
+            </div>
+        </MuiThemeProvider>
     </Provider>
     , document.getElementById('App'))
 

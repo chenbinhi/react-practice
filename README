@@ -33,4 +33,4 @@
 * api module:  isomorphic-fetch normalize // 优先级高
 * webpack dll  // 优先级低
 * 国际化支持（i18n）  // 优先级低
-
+* react-tap-event-plugin

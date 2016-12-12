@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Link, IndexLink } from 'react-router'
 import fetch from 'isomorphic-fetch'
 import Media from 'react-media'
-
 import Cleave from 'cleave.js/dist/cleave-react'
 
 //import 'react-datetime/css/react-datetime.css'  // FIXME: 引起sourceMap错乱
@@ -20,8 +19,7 @@ import { selectSum } from './selectors'
 import { LogA } from 'components/A'
 import Input from 'components/Input'
 import UnctrlInput from 'components/UnctrlInput'
-import LazyImg from 'components/LazyImg'
-
+import LazyImg from 'components/LazyImg' 
 
 class App extends Component {
     constructor(props) {
@@ -122,6 +120,9 @@ class App extends Component {
                     </div>
                     <div className='empty'>
                         <Link to={ { pathname: '/page/2', state: 'urlstate'} } activeClassName={styles.active}  >Page2</Link>
+                    </div>
+                    <div className='empty'>
+                        <Link to='/event' activeClassName='active' >Event</Link>
                     </div>
                     <div className='empty'>
                         <Link to='/board' activeClassName='active' >Board</Link>

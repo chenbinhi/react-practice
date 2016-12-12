@@ -43,7 +43,7 @@
     /*composes: unit-1-2 from 'mobi.css'*/
 }
 
-.flex-center {
+/*.flex-center {
     composes: flex-center from 'mobi.css'
 }
 
@@ -53,7 +53,7 @@
 
 .hide-on-mobile {
     composes: hide-on-mobile from 'mobi.css'
-}
+}*/
 
 .drop {
     /*width: 100px;*/
