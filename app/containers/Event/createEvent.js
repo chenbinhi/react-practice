@@ -4,7 +4,6 @@ import { push } from 'react-router-redux'
 import { reduxForm, Field, FieldArray, formValueSelector, FormSection } from 'redux-form'
 import { SelectField, TextField, DatePicker } from 'redux-form-material-ui'
 
-import Divider from 'material-ui/Divider' 
 import RaisedButton from 'material-ui/RaisedButton'
 import FlatButton from 'material-ui/FlatButton'
 // import TextField from 'material-ui/Textfield'
@@ -12,7 +11,6 @@ import FlatButton from 'material-ui/FlatButton'
 import MenuItem from 'material-ui/MenuItem'
 import Paper from 'material-ui/Paper'
 import { Step, Stepper, StepLabel, StepButton } from 'material-ui/Stepper'
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 
 import IconButton from 'material-ui/IconButton'
 import FontIcon from 'material-ui/FontIcon'
@@ -168,16 +166,12 @@ class App extends Component {
         switch (stepIndex) {
             case 0:
                 return <WizardFormCreateEvent onSubmit={this.handleNext} />
-                break
             case 1:
                 return <WizardFormCreateItem onSubmit={this.handleNext} />
-                break
             case 2:
                 return <WizardFormCreateEnroll onSubmit={this.handleNext} />
-                break
             default:
                 return <p>未知的步骤{stepIndex}</p>
-                break
         }
     }
 
@@ -201,27 +195,6 @@ class App extends Component {
                 </Stepper>
                 <div>
                     {this.getStepContent(stepIndex)}
-
-                    <Divider inset={true} />
-                    <Card>
-                        <CardHeader
-                        title="Without Avatar"
-                        subtitle="Subtitle"
-                        actAsExpander={true}
-                        showExpandableButton={true}
-                        />
-                        <CardActions>
-                        <FlatButton label="Action1" />
-                        <FlatButton label="Action2" />
-                        </CardActions>
-                        <CardText expandable={true}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                        </CardText>
-                    </Card>
-
                     <FlatButton 
                         label='上一步' 
                         disabled={stepIndex === 0}

@@ -253,6 +253,7 @@ class Virtual extends Component {
                   }
                   return (
                   <div>
+                  {/*
                     <Grid
                     className={styles.grid_container}
                     cellRenderer={this.gridCellRenderer}
@@ -268,6 +269,7 @@ class Virtual extends Component {
                     scrollTop={scrollTop}
                     scrollLeft={scrollLeft}
                     />
+                    */}
                     <Board
                       data={this.state.data}
                       className={styles.collection_container}

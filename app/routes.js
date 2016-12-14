@@ -14,10 +14,15 @@ import ScrollList from 'containers/ScrollList'
 import EventPage from 'containers/Event'
 import CreateEventPage from 'containers/Event/createEvent'
 import SettingEventPage from 'containers/Event/settings'
+import SettingItemPage from 'containers/Event/settingItem'
+import SettingPhasePage from 'containers/Event/settingPhase'
+import SettingGroupPage from 'containers/Event/settingGroup'
+import SettingRoundPage from 'containers/Event/settingRound'
+
+
 import ScheduleEventPage from 'containers/Event/schedule'
 import ControlEventPage from 'containers/Event/control'
 import ResultPage from 'containers/Event/result'
-
 
 export default (<Route path='/' component={App}>
                 {/*<IndexRedirect to='page/1' />*/}
@@ -27,6 +32,10 @@ export default (<Route path='/' component={App}>
                     <IndexRoute component={CreateEventPage} />
                     <Route path='create' component={CreateEventPage} />
                     <Route path='settings' component={SettingEventPage} />
+                    <Route path='settings/item/:itemNo' component={SettingItemPage} />
+                    <Route path='settings/phase/:itemNo/:phaseNo' component={SettingPhasePage} />
+                    <Route path='settings/group/:itemNo/:phaseNo/:groupNo' component={SettingGroupPage} />
+                    <Route path='settings/round/:itemNo/:phaseNo/:groupNo/:roundNo' component={SettingRoundPage} />
                     <Route path='schedule' component={ScheduleEventPage} />
                     <Route path='control' component={ControlEventPage} />
                     <Route path='result' component={ResultPage} />

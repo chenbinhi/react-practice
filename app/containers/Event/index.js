@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
 import AppBar from 'material-ui/AppBar'
+import { Tabs, Tab } from 'material-ui/Tabs'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton'
+import FontIcon from 'material-ui/FontIcon'
 import Drawer from './Drawer'
 import Login from './Login'
 
@@ -37,22 +40,16 @@ class Event extends Component {
                 case 'event':
                 case 'create':
                     return '创建'
-                    break
                 case 'settings':
                     return '设置'
-                    break
                 case 'schedule':
                     return '编排'
-                    break
                 case 'control':
                     return '场控'
-                    break
                 case 'result':
                     return '成绩'
-                    break
                 default:
                     return ''
-                    break
             }
         }
         return ''
@@ -63,10 +60,29 @@ class Event extends Component {
             <FlatButton label='取消' onTouchTap={this.handleLogin} />,
             <RaisedButton label='登录' onTouchTap={this.handleLogin} />
         ]
+        const styles = {
+            appBar: {
+                flexWrap: 'wrap',
+            },
+            tabs: {
+                width: '100%',
+            },
+        }
         return (<div>
-            <AppBar title={this.getCurrentPageName()}
+            <AppBar
+                title={ this.getCurrentPageName() } 
+                style={styles.appBar}
                 iconElementRight={<FlatButton label="登录" onTouchTap={this.handleLogin}/>}
-                onLeftIconButtonTouchTap={this.handleDrawer} />
+                onLeftIconButtonTouchTap={this.handleDrawer} >
+                <IconButton tooltip="搜索" onTouchTap={ () => {} } >
+                    <FontIcon className='material-icons'>search</FontIcon>
+                </IconButton>
+                <Tabs style={styles.tabs}>
+                    <Tab label="ALL" />
+                    <Tab label="CAMERA" />
+                    <Tab label="RECENT" />
+                </Tabs>
+            </AppBar>
             <Drawer
                 open={openDrawer}
                 docked={false}

@@ -34,3 +34,26 @@
 * webpack dll  // 优先级低
 * 国际化支持（i18n）  // 优先级低
 * react-tap-event-plugin
+* http://bvaughn.github.io/react-virtualized-select/
+* https://github.com/clauderic/react-infinite-calendar/
+* https://github.com/clauderic/react-sortable-hoc
+* https://github.com/emilebres/react-virtualized-checkbox
+* https://github.com/ultimate-pagination/react-ultimate-pagination-material-ui
+* http://codepen.io/kevinsmets/pen/AmDzh
+/* A flexbox implementation with css tables fallback, when the browser doesn't support the new syntax (2013).
+
+### Flexbox works in ###
+
+- Android 4.4+ (untested)
+- IE11
+- FF 22+ (required for absolute positioning)
+- Chrome 29+
+
+### Table fallback ###
+
+- Android 4.3 and below (untested)
+- IE8 - IE10
+- iOS 7 and below
+- Safari
+
+*/
