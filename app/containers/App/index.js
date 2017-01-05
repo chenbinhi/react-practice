@@ -111,6 +111,7 @@ class App extends Component {
     render() {
         return (
             <div className={styles.app}>
+            {/*
                 <div className={styles.nav}>
                     <div className='empty'>
                         <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
@@ -143,6 +144,7 @@ class App extends Component {
                         <Link to='/about' activeClassName='active' >About</Link>
                     </div>
                 </div>
+            */}
             {/*
                 <div className={styles.debug}>
                     <ul>

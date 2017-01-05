@@ -23,21 +23,27 @@ module.exports =
             //loader: 'style!css'
             loaders: [
                 'style-loader',
-                'css-loader?module&sourceMap&importLoader=1',
+                'css-loader?module&sourceMap&importLoader=1&name=[name].[hash]',
                 'postcss'
             ]
         },{
             test: /\.css/,
-            include: /node_modules\/(react-datetime|react-resizable|react-grid-layout|react-virtualized)/,
+            include: /node_modules/, // \/(react-datetime|react-resizable|react-grid-layout|react-virtualized|weui|react-weui)
             loaders: [
                 'style-loader',
                 'css?sourceMap=true',
             ]
-        }, {
-            test: /\.jpg/,
+        }, 
+        {
+            test: /\.less$/,
+            loader: 'style!css!postcss!less'
+        },
+        {
+            test: /\.(jpg|jpeg|png|svg)/,
             exclude: /node_modules/,
             loaders : [
-                'file?name=/assets/[name].[ext]'
+                // 'file?name=/assets/[name].[ext]',
+                'url?limit=25000'
             ]
         // },{
         //     test: /\.scss$/,
