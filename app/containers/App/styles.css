@@ -2,7 +2,6 @@
 .app {
     font-size: 16px;
 }
-*/
 .app {
   position: absolute;
   top: 0;
@@ -11,6 +10,7 @@
   left: 0;
   overflow: hidden;
 }
+*/
 :global .active {
     color: blue;
     /*

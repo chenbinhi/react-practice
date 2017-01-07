@@ -57,15 +57,13 @@ const mCarousel = (props) => (
     <Carousel axis="horizontal" showThumbs={false} showArrows={true} >
         <div>
             <img src={pic1} />
-            <p className="legend">Legend 1</p>
+            { /* <p className="legend">Legend 1</p> */ }
         </div>
         <div>
             <img src={pic2} />
-            <p className="legend">Legend 2</p>
         </div>
         <div>
             <img src={pic3} />
-            <p className="legend">Legend 3</p>
         </div>
     </Carousel>
 )

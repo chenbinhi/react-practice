@@ -11,7 +11,12 @@ import Board from 'containers/Board'
 import Layout from 'containers/Layout'
 import Virtual from 'containers/Virtual'
 import ScrollList from 'containers/ScrollList'
+
 import MEventPage from 'containers/MEvent'
+import MEventDetailPage from 'containers/MEvent/eventDetail'
+import MEventFightPage from 'containers/MEvent/fight'
+import MEventItemPage from 'containers/MEvent/item'
+
 import EventPage from 'containers/Event'
 import CreateEventPage from 'containers/Event/createEvent'
 import SettingEventPage from 'containers/Event/settings'
@@ -30,6 +35,9 @@ export default (<Route path='/' component={App}>
                 <IndexRoute component={Dashboard} />
                 <Route path='page/:id' component={Page} />
                 <Route path='mevent' component={MEventPage} />
+                <Route path='meventdetail' component={MEventDetailPage} />
+                <Route path='meventfight' component={MEventFightPage} />
+                <Route path='meventitem' component={MEventItemPage} />
                  <Route path='event' component={EventPage} >
                     <IndexRoute component={CreateEventPage} />
                     <Route path='create' component={CreateEventPage} />

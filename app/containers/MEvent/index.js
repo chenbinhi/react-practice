@@ -36,9 +36,9 @@ export default class EventApp extends Component {
             <div style={{ backgroundColor: '#F8F8F8'}} >
             <Tab>
                 <TabBody>
-                    <Event />
-                    <Article style={{display: this.state.tab == 0 ? null : 'none'}}>
-                    </Article>
+                    <div style={{display: this.state.tab == 0 ? null : 'none'}} >
+                        <Event />
+                    </div>
                     <Article style={{display: this.state.tab == 1 ? null : 'none'}}>
                         <h1>Page 2</h1>
                         <section>

@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import Carousel from './carousel'
 import EventInfo from './eventInfo'
 import Search from './search'
+// import ReactIScroll from 'react-iscroll'
+// import IScroll from 'iscroll'
 
 import { 
     Tab,
@@ -31,7 +33,7 @@ export default class Event extends Component {
                     <NavBarItem active={this.state.tab == 2} onClick={e=>this.setState({tab:2})}>最热</NavBarItem>
                 </NavBar>
                 <TabBody>
-                    <div>
+                    <div style={{ display: this.state.tab == 0 ? null : 'none'}}>
                     <Carousel />
                     <ButtonArea>
                     <Button onClick={e=>this.setState({actionSheetShow: true})}>发布新赛事</Button>
@@ -63,7 +65,7 @@ export default class Event extends Component {
                     />
                     <Search />
                     <EventInfo />
-                    <Article style={{display: this.state.tab == 0 ? null : 'none'}}>
+                    <Article>
                         <h1>Page 1</h1>
                         <section>
                             <h2 className="title">Heading</h2>

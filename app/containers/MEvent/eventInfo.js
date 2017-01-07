@@ -43,7 +43,7 @@ const EventInfo = (props) => (
             乒乓球赛事列表
         </PanelHeader>
         <PanelBody>
-            <MediaBox type='appmsg' href="javascript:void(alert('href：打开赛事详情页面'));">
+            <MediaBox type='appmsg' href="/meventdetail">
                 <MediaBoxHeader>{eventIcon}</MediaBoxHeader>
                 <MediaBoxBody href=''>
                     <MediaBoxTitle>赛事名</MediaBoxTitle>
