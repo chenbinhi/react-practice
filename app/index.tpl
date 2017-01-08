@@ -16,4 +16,8 @@
 <body>
   <div id="App"></div>
 </body>
+<script>
+  // for a:active
+  window.addEventListener('touchstart', function() {}, false)
+</script>
 </html>

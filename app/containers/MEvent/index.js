@@ -4,6 +4,7 @@ import 'weui'
 import 'react-weui/lib/react-weui.min.css'
 
 import Event from './event'
+import Me from './me'
 
 import { 
     Tab,
@@ -65,19 +66,9 @@ export default class EventApp extends Component {
                             </section>
                         </section>
                     </Article>
-                    <Article style={{display: this.state.tab == 3 ? null : 'none'}}>
-                        <h1>Page 4</h1>
-                        <section>
-                            <h2 className="title">Heading</h2>
-                            <section>
-                                <h3>4.1 Title</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute</p>
-                            </section>
-                        </section>
-                    </Article>
+                    <div style={{display: this.state.tab == 3 ? null : 'none'}}>
+                       <Me />
+                    </div>
                 </TabBody>
                 <TabBar>
                     <TabBarItem

@@ -54,27 +54,13 @@ export default class SearchBarDemo extends React.Component {
     render() {
         return (
             <div>
-                <Form>
-                    <FormCell select selectPos="before">
-                        <CellHeader>
-                            <Select>
-                                <option value="1">乒乓球</option>
-                                <option value="2">羽毛球</option>
-                                <option value="3">足球</option>
-                                <option value="4">篮球</option>
-                            </Select>
-                        </CellHeader>
-                        <CellBody>
-                            <SearchBar
-                                onChange={this.handleChange}
-                                placeholder="赛事查找"
-                                lang={{
-                                    cancel: '取消'
-                                }}
-                            />
-                        </CellBody>
-                    </FormCell>
-                </Form>
+                <SearchBar
+                    onChange={this.handleChange}
+                    placeholder="赛事查找"
+                    lang={{
+                        cancel: '取消'
+                    }}
+                />
                 <Panel style={{display: this.state.searchText ? null: 'none', marginTop: 0}}>
                     <PanelHeader>
                         Female Name Search

@@ -43,7 +43,7 @@ import React, { Component } from 'react'
 // }
 
 // general styles
-import 'react-responsive-carousel/lib/styles/main.css'
+// import 'react-responsive-carousel/lib/styles/main.css'
 // carousel styles
 import 'react-responsive-carousel/lib/styles/carousel.css'
 

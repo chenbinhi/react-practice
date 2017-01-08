@@ -16,6 +16,7 @@ import MEventPage from 'containers/MEvent'
 import MEventDetailPage from 'containers/MEvent/eventDetail'
 import MEventFightPage from 'containers/MEvent/fight'
 import MEventItemPage from 'containers/MEvent/item'
+import MEventMePage from 'containers/MEvent/me'
 
 import EventPage from 'containers/Event'
 import CreateEventPage from 'containers/Event/createEvent'
@@ -38,6 +39,7 @@ export default (<Route path='/' component={App}>
                 <Route path='meventdetail' component={MEventDetailPage} />
                 <Route path='meventfight' component={MEventFightPage} />
                 <Route path='meventitem' component={MEventItemPage} />
+                <Route path='meventme' component={MEventMePage} />
                  <Route path='event' component={EventPage} >
                     <IndexRoute component={CreateEventPage} />
                     <Route path='create' component={CreateEventPage} />

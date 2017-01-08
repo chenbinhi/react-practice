@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 import Carousel from './carousel'
 import EventInfo from './eventInfo'
@@ -14,8 +14,87 @@ import {
     NavBarItem,
     ActionSheet,
     Button,
-    ButtonArea
+    ButtonArea,
+    Grids,
 } from 'react-weui'
+
+import {
+    PingPongIcon,
+    YuMaoQiuIcon,
+    ZhuQiuIcon,
+    LanQiuIcon,
+    XiangQiIcon,
+    WuDaoIcon,
+    MaJiangIcon,
+    HotIcon,
+    HeartIcon,
+    PlusCircle,
+} from './icon'
+
+const classData = [
+    {
+        icon: <PingPongIcon color='red' />,
+        label: '乒乓球',
+        href: 'javascript:void(alert("href:乒乓球"))'
+    },
+    {
+        icon: <YuMaoQiuIcon />,
+        label: '羽毛球',
+        href: 'javascript:void(alert("href:羽毛球"))'
+    },
+    {
+        icon: <ZhuQiuIcon />,
+        label: '足球',
+        href: '',
+        onClick(e) {
+            alert('onClick: 足球')
+            e.preventDefault()
+        }
+    },
+    {
+        icon: <LanQiuIcon />,
+        label: '篮球',
+    },
+    {
+        icon: <XiangQiIcon />,
+        label: '象棋',
+    },
+    {
+        icon: <PlusCircle />,
+        label: '围棋',
+    },
+    {
+        icon: <WuDaoIcon />,
+        label: '舞蹈',
+    },
+    {
+        icon: <MaJiangIcon />,
+        label: '麻将',
+    },
+    {
+        icon: <PlusCircle />,
+        label: '运动会',
+    },
+    {
+        icon: <PlusCircle size={28} />,
+        label: '铁人三项',
+    },
+    {
+        icon: <HotIcon size={28} />,
+        label: '拳击',
+    },
+    {
+        icon: <HeartIcon  color='red'/>,
+        label: '更多',
+        href: '',
+        onClick(e) {
+            alert('onClick: 更多')
+            // e.preventDefault()
+            //e.stopPropagation()
+        }
+    },
+]
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 export default class Event extends Component {
     state = {
@@ -35,9 +114,15 @@ export default class Event extends Component {
                 <TabBody>
                     <div style={{ display: this.state.tab == 0 ? null : 'none'}}>
                     <Carousel />
-                    <ButtonArea>
-                    <Button onClick={e=>this.setState({actionSheetShow: true})}>发布新赛事</Button>
-                    </ButtonArea>
+                    <Grids data={classData}/>
+                    <FaPlusCircle size={50} style={{
+                        color: 'green',
+                        position: 'fixed',
+                        bottom: 70,
+                        right: 10,
+                        zIndex: 1000,
+                        // backgroundColor: 'white'
+                    }} onClick={e=>this.setState({actionSheetShow: true})} />
                     <ActionSheet
                         menus={
                             [{
