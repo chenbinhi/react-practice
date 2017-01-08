@@ -78,7 +78,7 @@ export const RFTextArea = ({ label, name, meta: { touch, error, warning }, input
     </FormCell>
 )
 
-export const RFSelect = (body, footer) => (
+export const RFSelectCreator = (body, footer) => (
     ({ label, name, children, meta: { touch, error, warning }, input: inputProps, ...props }) => (
     <FormCell select selectPos={ (body && 'before') || (label && 'after')} >
         <CellHeader>
@@ -99,3 +99,5 @@ export const RFSelect = (body, footer) => (
     </FormCell>
     )
 )
+
+export const RFSelect = RFSelectCreator()

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Carrousel from './carousel'
-
+import Footer from './footer'
 import {
     Cell,
     CellHeader,
@@ -9,10 +9,6 @@ import {
     CellFooter,
     Cells,
     CellsTitle,
-    Footer,
-    FooterLinks,
-    FooterLink,
-    FooterText,
     Preview,
     PreviewHeader,
     PreviewBody,
@@ -131,12 +127,7 @@ class EventDetail extends Component {
             </Cells>
 
             <br />
-            <Footer>
-                <FooterLinks>
-                    <FooterLink href="javascript:void(alert('联系客服'))">有任何疑问请联系客服</FooterLink>
-                </FooterLinks>
-                <FooterText>Copyright &copy; 2016 xxx.com </FooterText>
-            </Footer>
+            <Footer />
         </div>
     }
 }

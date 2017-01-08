@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-
+import { Link } from 'react-router'
 import Carousel from './carousel'
 import EventInfo from './eventInfo'
 import Search from './search'
@@ -18,6 +18,7 @@ import {
     Grids,
 } from 'react-weui'
 
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 import {
     PingPongIcon,
     YuMaoQiuIcon,
@@ -94,7 +95,6 @@ const classData = [
         }
     },
 ]
-import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 export default class Event extends Component {
     state = {
@@ -115,20 +115,23 @@ export default class Event extends Component {
                     <div style={{ display: this.state.tab == 0 ? null : 'none'}}>
                     <Carousel />
                     <Grids data={classData}/>
-                    <FaPlusCircle size={50} style={{
-                        color: 'green',
-                        position: 'fixed',
-                        bottom: 70,
-                        right: 10,
-                        zIndex: 1000,
-                        // backgroundColor: 'white'
-                    }} onClick={e=>this.setState({actionSheetShow: true})} />
+                    <Link to='/meventadd'>
+                        <FaPlusCircle size={50} style={{
+                            color: 'green',
+                            position: 'fixed',
+                            bottom: 70,
+                            right: 10,
+                            zIndex: 1000,
+                            // backgroundColor: 'white'
+                        }} onClick={e=>this.setState({actionSheetShow: true})} />
+                    </Link>
                     <ActionSheet
                         menus={
                             [{
                                 label: '乒乓球',
                                 onClick: () => {
                                     this.setState({ actionSheetSelect: '乒乓球' })
+
                                 }
                             }, {
                                 label: '羽毛球',

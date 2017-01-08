@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import Icon from 'react-icon-base'
+
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
 
 const ClassIcon = (IconComponent) => {
     return class ClassIconConfiged extends Component {

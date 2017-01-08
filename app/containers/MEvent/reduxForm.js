@@ -29,10 +29,11 @@ import {
     RFCheckbox,
     RFRadio,
     RFSelect,
+    RFSelectCreator,
     RFSwitch,
     RFTextArea,
     RFInput
-} from './redux-form-weiui'
+} from './redux-form-weui'
 
 import iconSrc from './images/icon.png'
 import vcodeSrc from './images/vcode.jpg'
@@ -67,7 +68,7 @@ const ReduxForm = reduxForm({
             <Field name='vcode' label='验证码' placeholder='请输入验证码' footer={<VCode src={vcodeSrc} />} component={ RFInput } />
             <Field name='text' label='输入' placeholder='请输入一个段文字' rows="3" maxlength="200" component={ RFTextArea } />
             <Field name='switch_mix' label='开关' component={ RFSwitch } />
-            <Field name='select' component={ RFSelect() }>
+            <Field name='select' component={ RFSelect }>
                 <option value="1">WeChat</option>
                 <option value="2">QQ</option>
                 <option value="3">Email</option>
@@ -85,14 +86,14 @@ const ReduxForm = reduxForm({
                                 value: 3,
                                 label: 'Germany'
                             }
-                        ]} component={ RFSelect() } />
-            <Field name='select2' component={ RFSelect(<Field name='tel' type="tel" placeholder="Enter Phone" component={ RF(Input) } />)  }>
+                        ]} component={ RFSelect } />
+            <Field name='select2' component={ RFSelectCreator(<Field name='tel' type="tel" placeholder="Enter Phone" component={ RF(Input) } />)  }>
                 <option value="1">+86</option>
                 <option value="2">+80</option>
                 <option value="3">+84</option>
                 <option value="4">+87</option>
             </Field>
-            <Field name='select3' label='电话' component={ RFSelect(<Input type="tel" placeholder="Enter Phone" />) }>
+            <Field name='select3' label='电话' component={ RFSelectCreator(<Input type="tel" placeholder="Enter Phone" />) }>
                 <option value="1">+86</option>
                 <option value="2">+80</option>
                 <option value="3">+84</option>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
 import {
     Panel,
@@ -48,7 +49,8 @@ const EventInfo = (props) => (
             乒乓球赛事列表
         </PanelHeader>
         <PanelBody>
-            <MediaBox type='appmsg' href="/meventdetail">
+            <Link to='/meventdetail'>
+            <MediaBox type='appmsg' href="">
                 <MediaBoxHeader>{eventIcon}</MediaBoxHeader>
                 <MediaBoxBody href=''>
                     <MediaBoxTitle>赛事名</MediaBoxTitle>
@@ -67,6 +69,7 @@ const EventInfo = (props) => (
                         e.stopPropagation()
                     }}/>
             </MediaBox>
+            </Link>
             <MediaBox type='appmsg' onClick={e=> alert('onClick：打开赛事详情页面')}>
                 <MediaBoxHeader>{eventIcon}</MediaBoxHeader>
                 <MediaBoxBody>
