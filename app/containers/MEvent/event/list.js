@@ -42,14 +42,14 @@ const CellMore = () => (
     </Cell>
 )
 
-const EventInfo = (props) => (
+const EventList = (props) => (
     <div>
     <Panel>
         <PanelHeader>
             乒乓球赛事列表
         </PanelHeader>
         <PanelBody>
-            <Link to='/meventdetail'>
+            <Link to='/mevent'>
             <MediaBox type='appmsg' href="">
                 <MediaBoxHeader>{eventIcon}</MediaBoxHeader>
                 <MediaBoxBody href=''>
@@ -67,6 +67,7 @@ const EventInfo = (props) => (
                     onClick={ (rate, e) => {
                         alert(rate)
                         e.stopPropagation()
+                        e.preventDefault()
                     }}/>
             </MediaBox>
             </Link>
@@ -139,4 +140,4 @@ const EventInfo = (props) => (
     </div>
 )
 
-export default EventInfo
+export default EventList

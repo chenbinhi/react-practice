@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import Carrousel from './carousel'
-import Footer from './footer'
+
+import PreviewButton from '../components/PreviewButton'
+import Carrousel from '../components/carousel'
+import Footer from '../components/footer'
 import {
     Cell,
     CellHeader,
@@ -13,7 +16,7 @@ import {
     PreviewHeader,
     PreviewBody,
     PreviewFooter,
-    PreviewButton,
+    // PreviewButton,
     PreviewItem,
     Badge,
 } from 'react-weui'
@@ -48,14 +51,14 @@ class EventDetail extends Component {
                     <PreviewItem label='状态' value='进行中' />
                 </PreviewBody>
                 <PreviewFooter>
-                    <PreviewButton primary={true} href="/meventfight">进入比赛</PreviewButton>
+                    <PreviewButton component={Link} to="/meventfight" primary={true} >进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
             <br />
             <CellsTitle>项目（设置）</CellsTitle>
             <Cells>
-                <Cell access >
+                <Cell component={Link} to='meventitem' access >
                     <CellBody >项目1</CellBody>
                     <CellFooter />
                 </Cell>
@@ -66,7 +69,7 @@ class EventDetail extends Component {
                     </CellBody>
                     <CellFooter />
                 </Cell>
-                <Cell href="/meventitem" access>
+                <Cell component={Link} to="/meventitem" access>
                     <CellBody >项目3</CellBody>
                     <CellFooter />
                 </Cell>

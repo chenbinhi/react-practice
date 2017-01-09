@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import Footer from './footer'
+import Footer from '../components/footer'
 import {
     Msg
 } from 'react-weui'
@@ -13,14 +13,14 @@ const MessagePage = ({ goto }) => (
         description='创建成功'
         buttons={[
             {
-                label: '回到首页',
-                type: 'primary',
-                onClick: e => goto('/mevent')
-            },
-             {
                 label: '添加赛事项目',
-                type: 'default',
-                onClick: e => goto('/meventitemadd')
+                type: 'primary',
+                onClick: e => goto('/meventitemlist')
+            },
+            {
+                label: '回到首页',
+                type: '',
+                onClick: e => goto('/m')
             },
         ]}
         footer={Footer}

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import Icon from 'react-icon-base'
 
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle'
+import FaPlus from 'react-icons/lib/fa/plus'
 
 const ClassIcon = (IconComponent) => {
     return class ClassIconConfiged extends Component {
@@ -90,3 +91,5 @@ export const MaJiangIcon = ClassIcon((props) => (
 ))
 
 export const PlusCircle = ClassIcon(FaPlusCircle)
+export const Plus = ClassIcon(FaPlus)
+

@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import Carrousel from './carousel'
-
 import {
     Cell,
     CellHeader,
@@ -17,7 +15,6 @@ import {
     PreviewHeader,
     PreviewBody,
     PreviewFooter,
-    PreviewButton,
     PreviewItem,
     Badge,
     SearchBar,
@@ -34,8 +31,7 @@ import {
     MediaBoxInfoMeta,
 } from 'react-weui'
 
-import SampleData from './nameDB';
-
+import SampleData from './useless/nameDB';
 
 const smallUserIcon =
 <img
@@ -57,11 +53,6 @@ const CellMore = () => (
 
 
 class Fight extends Component {
-    static displayName = 'fight-modified'
-    static defaultProps = {
-
-    }
-
     state = {
         searchText: '',
         results: SampleData.slice(0, 3), 
@@ -85,9 +76,7 @@ class Fight extends Component {
                 <SearchBar
                     onChange={this.handleChange}
                     placeholder="比赛查找"
-                    lang={{
-                        cancel: '取消'
-                    }}
+                    lang={{ cancel: '取消' }}
                 />
                 <Panel style={{ marginTop: 0}}>
                     <PanelHeader>

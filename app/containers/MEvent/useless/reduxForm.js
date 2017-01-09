@@ -33,7 +33,7 @@ import {
     RFSwitch,
     RFTextArea,
     RFInput
-} from './redux-form-weui'
+} from '../components/redux-form-weui'
 
 import iconSrc from './images/icon.png'
 import vcodeSrc from './images/vcode.jpg'

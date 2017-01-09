@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 
-import Carrousel from './carousel'
-import Form from './form'
-import ReduxForm from './reduxForm'
-import Footer from './footer'
+import PreviewButton from '../components/PreviewButton'
+import Carrousel from '../components/carousel'
+import Footer from '../components/footer'
 import {
     Cell,
     CellHeader,
@@ -15,7 +15,7 @@ import {
     PreviewHeader,
     PreviewBody,
     PreviewFooter,
-    PreviewButton,
+    // PreviewButton,
     PreviewItem,
     Badge,
 } from 'react-weui'
@@ -40,8 +40,6 @@ class Item extends Component {
     render() {
         return <div>
             <Carrousel />
-            <ReduxForm onSubmit={e => console.log(e)}/>
-            <Form />
             <Preview>
                 <PreviewHeader>
                     <PreviewItem label='项目信息' value='' />
@@ -54,8 +52,8 @@ class Item extends Component {
                     <PreviewItem label='状态' value='进行中' />
                 </PreviewBody>
                 <PreviewFooter>
-                    <PreviewButton href="/meventresult">编辑</PreviewButton>
-                    <PreviewButton primary href="/meventfight">进入比赛</PreviewButton>
+                    <PreviewButton component={Link} to="/meventresult">编辑</PreviewButton>
+                    <PreviewButton primary component={Link} to="/meventfight">进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
@@ -86,7 +84,7 @@ class Item extends Component {
                         小胖
                     </CellFooter>
                 </Cell>
-                <Cell href="/meventresult" access link>
+                <Cell component={Link} to="/meventresult" access link>
                     <CellBody >更多</CellBody>
                     <CellFooter />
                 </Cell>
@@ -106,7 +104,7 @@ class Item extends Component {
                     </CellBody>
                     <CellFooter />
                 </Cell>
-                <Cell href="/meventphase" access>
+                <Cell component={Link} to="/meventphase" access>
                     <CellBody >阶段3</CellBody>
                     <CellFooter />
                 </Cell>

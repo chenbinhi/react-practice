@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 
-import Page from './page';
-import SampleData from './nameDB';
+import SampleData from '../useless/nameDB';
 
 import {
-    //main component
     SearchBar,
-    //for display data
     Panel,
     PanelHeader,
     PanelBody,
@@ -57,13 +54,11 @@ export default class SearchBarDemo extends React.Component {
                 <SearchBar
                     onChange={this.handleChange}
                     placeholder="赛事查找"
-                    lang={{
-                        cancel: '取消'
-                    }}
+                    lang={{ cancel: '取消' }}
                 />
                 <Panel style={{display: this.state.searchText ? null: 'none', marginTop: 0}}>
                     <PanelHeader>
-                        Female Name Search
+                        查找到的赛事
                     </PanelHeader>
                     <PanelBody>
                         {
@@ -81,7 +76,7 @@ export default class SearchBarDemo extends React.Component {
                                         </MediaBox>
                                     )
                                 })
-                                : <MediaBox>Can't find any！</MediaBox>
+                                : <MediaBox>没有打到匹配的赛事！</MediaBox>
                         }
                     </PanelBody>
                     <PanelFooter href="javascript:void(0);">
