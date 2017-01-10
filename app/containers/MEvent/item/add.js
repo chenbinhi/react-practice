@@ -23,7 +23,7 @@ import {
     RFSwitch,
     RFTextArea
 } from '../components/redux-form-weui'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 import AutoToptips from '../components/AutoToptips'
 
 const AddItem = ({ handleSubmit, error, submitting, submitFailed }) => (

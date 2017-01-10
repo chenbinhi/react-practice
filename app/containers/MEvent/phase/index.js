@@ -22,53 +22,54 @@ import {
 
 import { smallIcon } from '../components/icons'
 
-class Item extends Component {
+
+class Phase extends Component {
     render() {
         return <div>
-            <Carrousel />
             <Preview>
                 <PreviewHeader>
-                    <PreviewItem label='项目信息' value='' />
+                    <PreviewItem label='阶段信息' value='' />
                 </PreviewHeader>
                 <PreviewBody>
-                    <PreviewItem label='项目名称' value='xxxx' />
+                    <PreviewItem label='赛事' value='xxxx' />
+                    <PreviewItem label='项目' value='xxxx' />
+                    <PreviewItem label='类型' value='循环赛' />
                     <PreviewItem label='比赛时间' value='2016/1/1-2016/1/3' />
-                    <PreviewItem label='比赛地点' value='四川 成都 xxxxx' />
-                    <PreviewItem label='比赛说明' value='说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字' />
-                    <PreviewItem label='状态' value='进行中' />
+                    <PreviewItem label='分组数' value='3' />
+                    <PreviewItem label='参赛人数' value='5' />
+                    <PreviewItem label='状态' value='进行中(第n轮第n场)' />
                 </PreviewBody>
                 <PreviewFooter>
                     <PreviewButton component={Link} to="/meventresult">编辑</PreviewButton>
-                    <PreviewButton component={Link} to="/meventenroll" >报名</PreviewButton>
                     <PreviewButton primary component={Link} to="/meventfight">进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
             <br />
-            <CellsTitle>成绩公告</CellsTitle>
+            <CellsTitle>得分</CellsTitle>
             <Cells>
                 <Cell access href="javascript:void(alert('张继科'))" >
                     <CellHeader>{smallIcon}</CellHeader>
-                    <CellBody >冠军</CellBody>
+                    <CellBody >张继科</CellBody>
                     <CellFooter>
                         <div style={ {display: 'flex', alignItems: 'center' }} >
                         {smallIcon}
-                        <div>张继科</div>
+                        <div>16分</div>
                         </div>
                     </CellFooter>
                 </Cell>
                 <Cell access href="javascript:void(alert('马龙'))" >
                     <CellHeader>{smallIcon}</CellHeader>
-                    <CellBody >亚军</CellBody>
+                    <CellBody >马龙</CellBody>
                     <CellFooter>
-                        马龙
+                        12分
                     </CellFooter>
                 </Cell>
                 <Cell access href="javascript:void(alert('小胖'))" >
                     <CellHeader>{smallIcon}</CellHeader>
-                    <CellBody >季军</CellBody>
+                    <CellBody >小胖</CellBody>
                     <CellFooter>
-                        小胖
+                        10分
                     </CellFooter>
                 </Cell>
                 <Cell component={Link} to="/meventresult" access link>
@@ -78,45 +79,26 @@ class Item extends Component {
             </Cells>
 
             <br />
-            <CellsTitle>阶段（设置）</CellsTitle>
+            <CellsTitle>分组</CellsTitle>
             <Cells>
                 <Cell access>
-                    <CellBody >阶段1</CellBody>
-                    <CellFooter />
+                    <CellBody >A组</CellBody>
+                    <CellFooter>4人</CellFooter>
                 </Cell>
-                <Cell href="javascript:void(alert('阶段2'))" access>
+                <Cell href="javascript:void(alert('B组'))" access>
                     <CellBody >
-                        阶段2
+                        B组
                         <Badge preset='body'>进行中</Badge>
                     </CellBody>
-                    <CellFooter />
+                    <CellFooter>4人</CellFooter>
                 </Cell>
-                <Cell component={Link} to="/meventphase" access>
-                    <CellBody >阶段3</CellBody>
-                    <CellFooter />
+                <Cell component={Link} to="/meventgroup" access>
+                    <CellBody >C组</CellBody>
+                    <CellFooter>4人</CellFooter>
                 </Cell>
             </Cells>
 
             <br />
-            <CellsTitle>参赛名单</CellsTitle>
-            <Cells>
-                <Cell access >
-                    <CellHeader>{smallIcon}</CellHeader>
-                    <CellBody >选手1</CellBody>
-                    <CellFooter />
-                </Cell>
-                <Cell href="javascript:void(alert('选手2'))" access>
-                    <CellBody >
-                        选手2
-                        <Badge preset='body'>种子</Badge>
-                    </CellBody>
-                    <CellFooter />
-                </Cell>
-                <Cell href="javascript:void(alert('选手3'))" access>
-                    <CellBody >选手3</CellBody>
-                    <CellFooter />
-                </Cell>
-            </Cells>
 
             <br />
             <CellsTitle>说明</CellsTitle>
@@ -132,4 +114,4 @@ class Item extends Component {
     }
 }
 
-export default Item
+export default Phase

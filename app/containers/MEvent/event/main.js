@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
-import Carousel from '../components/carousel'
+import Carousel from '../components/Carousel'
 import Search from './search'
 import EventList from './list'
 
@@ -95,7 +95,7 @@ const classData = [
     },
 ]
 
-export default class Event extends Component {
+export default class EventMain extends Component {
     state = {
         tab: 0,
         actionSheetShow: false,

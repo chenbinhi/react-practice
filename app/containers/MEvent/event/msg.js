@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
-import Footer from '../components/footer'
+import Footer from '../components/Footer'
 import {
     Msg
 } from 'react-weui'

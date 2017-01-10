@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import 'weui'
 import 'react-weui/lib/react-weui.min.css'
 
-import Event from './event/main'
+import EventMain from './event/main'
 import Me from './me'
 
 import { 
@@ -34,7 +34,7 @@ export default class EventApp extends Component {
             <Tab style={{ backgroundColor: '#F8F8F8'}}>
                 <TabBody>
                     <div style={{display: this.state.tab == 0 ? null : 'none'}} >
-                        <Event />
+                        <EventMain />
                     </div>
                     <div style={{display: this.state.tab == 1 ? null : 'none'}}>
                        <Me />

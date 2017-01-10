@@ -12,14 +12,17 @@ import Layout from 'containers/Layout'
 import Virtual from 'containers/Virtual'
 import ScrollList from 'containers/ScrollList'
 
-import MEventIndexPage from 'containers/MEvent/index'
+import MEventIndexPage from 'containers/MEvent'
 import MEventPage from 'containers/MEvent/event'
 import MEventAddPage from 'containers/MEvent/event/add'
 import MEventMsgPage from 'containers/MEvent/event/msg'
-import MEventItemPage from 'containers/MEvent/item/index'
+import MEventItemPage from 'containers/MEvent/item'
 import MEventItemListPage from 'containers/MEvent/item/list'
 import MEventItemAddPage from 'containers/MEvent/item/add'
 import MEventItemMsgPage from 'containers/MEvent/item/msg'
+import MEventPhasePage from 'containers/MEvent/phase'
+import MEventGroupPage from 'containers/MEvent/group'
+
 import MEventFightPage from 'containers/MEvent/fight'
 import MEventMePage from 'containers/MEvent/me'
 
@@ -44,11 +47,13 @@ export default (<Route path='/' component={App}>
                 <Route path='mevent' component={MEventPage} />
                 <Route path='meventadd' component={MEventAddPage} />
                 <Route path='meventmsg' component={MEventMsgPage} />
-                <Route path='meventfight' component={MEventFightPage} />
                 <Route path='meventitem' component={MEventItemPage} />
                 <Route path='meventitemlist' component={MEventItemListPage} />
                 <Route path='meventitemadd' component={MEventItemAddPage} />
                 <Route path='meventitemmsg' component={MEventItemMsgPage} />
+                <Route path='meventphase' component={MEventPhasePage} />
+                <Route path='meventgroup' component={MEventGroupPage} />
+                <Route path='meventfight' component={MEventFightPage} />
                 <Route path='meventme' component={MEventMePage} />
                  <Route path='event' component={EventPage} >
                     <IndexRoute component={CreateEventPage} />

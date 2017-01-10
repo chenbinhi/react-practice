@@ -28,7 +28,8 @@ module.exports =
             ]
         },{
             test: /\.css/,
-            include: /node_modules/, // \/(react-datetime|react-resizable|react-grid-layout|react-virtualized|weui|react-weui)
+            //include: /node_modules/,  // node_modules 目录文件太多 开发时会引起mac os 内核线程把CPU跑満
+            include: /node_modules\/(react-datetime|react-resizable|react-grid-layout|react-virtualized|weui|react-weui|react-responsive-carousel)/,
             loaders: [
                 'style-loader',
                 'css?sourceMap=true',
