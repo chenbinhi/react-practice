@@ -43,7 +43,8 @@
     "react-router-redux": "^4.0.5",
     "react-slick": "^0.14.5",
     "react-sortable-hoc": "^0.4.5",
-    "react-swipeable-views": "^0.9.3",
+    "react-swipeable-views": "file:///Users/chenbin/Documents/codes/react-swipeable-views/packages/react-swipeable-views",
+    "react-swipeable-views-core": "file:///Users/chenbin/Documents/codes/react-swipeable-views/packages/react-swipeable-views-core",
     "react-tap-event-plugin": "^2.0.1",
     "react-virtualized": "^8.4.1",
     "react-weui": "^1.0.3",
@@ -83,6 +84,7 @@
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "vconsole": "^2.5.2",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.14.1"
   }

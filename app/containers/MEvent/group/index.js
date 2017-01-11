@@ -48,12 +48,15 @@ const styles = {
   divider: {
     height: 50,
   },
-  slideNav1: {
+  slideStyle: {
       backgroundColor: '#B3DC4A',
       textAlign: 'center',
     //   marginRight: '10px'
   },
-  slideNav: {}
+  tabSlide: {
+      height: 100,
+      width: "100%"
+  }
 };
 
 function calcLeftIndex(index, countInPage, maxCount)
@@ -69,15 +72,21 @@ function calcLeftIndex(index, countInPage, maxCount)
 
 export default class Group extends Component {
     state = {
-        index: 0
+        index: 0,
     }
 
     handleChangeIndex = (i) => {
         this.setState({ index: i })
     }
 
+    calcTabIndex = () => {
+        let { index } = this.state
+        return calcLeftIndex(index, 5, 10)
+    }
+
     render() {
         let { index } = this.state
+        let tabIndex = this.calcTabIndex()
         return <div>
         <Preview>
             <PreviewHeader>
@@ -100,18 +109,37 @@ export default class Group extends Component {
         <br />
         <CellsTitle>对阵(轮次)</CellsTitle>
         <Cells>
-        <SwipeableViews resistance index={calcLeftIndex(index, 5, 10)}  style={{ padding: '0 80% 0 0' }} slideStyle={styles.slideNav1}>
-            <button onClick={e => this.handleChangeIndex(0)} style={ {...styles.slideNav, color: index==0?'red': undefined}}>第一轮</button>
-            <button onClick={e => this.handleChangeIndex(1)} style={ {...styles.slideNav, color: index==1?'red': undefined}}>第二轮</button>
-            <button onClick={e => this.handleChangeIndex(2)} style={ {...styles.slideNav, color: index==2?'red': undefined}}>第三轮</button>
-            <button onClick={e => this.handleChangeIndex(3)} style={ {...styles.slideNav, color: index==3?'red': undefined}}>第四轮</button>
-            <button onClick={e => this.handleChangeIndex(4)} style={ {...styles.slideNav, color: index==4?'red': undefined}}>第五轮</button>
-            <button onClick={e => this.handleChangeIndex(5)} style={ {...styles.slideNav, color: index==5?'red': undefined}}>第六轮</button>
-            <button onClick={e => this.handleChangeIndex(6)} style={ {...styles.slideNav, color: index==6?'red': undefined}}>第七轮</button>
-            <button onClick={e => this.handleChangeIndex(7)} style={ {...styles.slideNav, color: index==7?'red': undefined}}>第八轮</button>
-            <button onClick={e => this.handleChangeIndex(8)} style={ {...styles.slideNav, color: index==8?'red': undefined}}>第九轮</button>
-            <button onClick={e => this.handleChangeIndex(9)} style={ {...styles.slideNav, color: index==9?'red': undefined}}>第十轮</button>
+        <SwipeableViews maxIndex={5} resistance index={ tabIndex } style={{ padding: '0 80% 0 0' }} slideStyle={styles.slideStyle}>
+            <button onClick={e => this.handleChangeIndex(0)} style={ {...styles.tabSlide, color: index==0?'red': undefined}}>第一轮</button>
+            <button onClick={e => this.handleChangeIndex(1)} style={ {...styles.tabSlide, color: index==1?'red': undefined}}>第二轮</button>
+            <button onClick={e => this.handleChangeIndex(2)} style={ {...styles.tabSlide, color: index==2?'red': undefined}}>第三轮</button>
+            <button onClick={e => this.handleChangeIndex(3)} style={ {...styles.tabSlide, color: index==3?'red': undefined}}>第四轮</button>
+            <button onClick={e => this.handleChangeIndex(4)} style={ {...styles.tabSlide, color: index==4?'red': undefined}}>第五轮</button>
+            <button onClick={e => this.handleChangeIndex(5)} style={ {...styles.tabSlide, color: index==5?'red': undefined}}>第六轮</button>
+            <button onClick={e => this.handleChangeIndex(6)} style={ {...styles.tabSlide, color: index==6?'red': undefined}}>第七轮</button>
+            <button onClick={e => this.handleChangeIndex(7)} style={ {...styles.tabSlide, color: index==7?'red': undefined}}>第八轮</button>
+            <button onClick={e => this.handleChangeIndex(8)} style={ {...styles.tabSlide, color: index==8?'red': undefined}}>第九轮</button>
+            <button onClick={e => this.handleChangeIndex(9)} style={ {...styles.tabSlide, color: index==9?'red': undefined}}>第十轮</button>
         </SwipeableViews>
+
+        <br />
+        <SwipeableViews maxIndex={9} resistance index={ index } style={{ padding: '0 80% 0 0' }} onChangeIndex={this.handleChangeIndex} slideStyle={styles.slideStyle}>
+            <button style={ styles.tabSlide }></button>
+            <button style={ styles.tabSlide }></button>
+            <button onClick={e => this.handleChangeIndex(0)} style={ {...styles.tabSlide, color: index==0?'red': undefined}}>第一轮</button>
+            <button onClick={e => this.handleChangeIndex(1)} style={ {...styles.tabSlide, color: index==1?'red': undefined}}>第二轮</button>
+            <button onClick={e => this.handleChangeIndex(2)} style={ {...styles.tabSlide, color: index==2?'red': undefined}}>第三轮</button>
+            <button onClick={e => this.handleChangeIndex(3)} style={ {...styles.tabSlide, color: index==3?'red': undefined}}>第四轮</button>
+            <button onClick={e => this.handleChangeIndex(4)} style={ {...styles.tabSlide, color: index==4?'red': undefined}}>第五轮</button>
+            <button onClick={e => this.handleChangeIndex(5)} style={ {...styles.tabSlide, color: index==5?'red': undefined}}>第六轮</button>
+            <button onClick={e => this.handleChangeIndex(6)} style={ {...styles.tabSlide, color: index==6?'red': undefined}}>第七轮</button>
+            <button onClick={e => this.handleChangeIndex(7)} style={ {...styles.tabSlide, color: index==7?'red': undefined}}>第八轮</button>
+            <button onClick={e => this.handleChangeIndex(8)} style={ {...styles.tabSlide, color: index==8?'red': undefined}}>第九轮</button>
+            <button onClick={e => this.handleChangeIndex(9)} style={ {...styles.tabSlide, color: index==9?'red': undefined}}>第十轮</button>
+            <button style={ styles.tabSlide }></button>
+            <button style={ styles.tabSlide }></button>
+        </SwipeableViews>
+       
         
         <br />
         <div style={{position: 'relative'}}>
