@@ -19,12 +19,19 @@ module.exports =
             loader: "babel-loader"
         },{
             test: /\.css$/,
-            exclude: /node_modules/,
+            exclude: /node_modules|app\/assets/,
             //loader: 'style!css'
             loaders: [
                 'style-loader',
                 'css-loader?module&sourceMap&importLoader=1&name=[name].[hash]',
                 'postcss'
+            ]
+        },{
+            test: /\.css$/,
+            include: /app\/assets/,
+            loaders: [
+                'style-loader',
+                'css?sourceMap=true'
             ]
         },{
             test: /\.css/,

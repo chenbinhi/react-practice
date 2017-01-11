@@ -1,0 +1,52 @@
+.vs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 5px;
+    min-height: 120px;
+    color: #fff;
+    background-color: #6AC0FF;
+}
+
+.vs-container_around {
+    justify-content: space-around;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+}
+
+.player__image {
+    height: 78px;
+    width: 78px;
+    border-radius: 50%;
+    margin-right: 5px; 
+}
+.player__image_right {
+    margin-right: 0px;
+    margin-left: 5px;
+}
+.player__info {
+    font-size: 1em;
+}
+
+.player__info_right {
+    text-align: right;
+}
+
+.player__info__name {
+    text-align: center;
+    font-size: 0.5rem;
+    margin-top: 10px;
+}
+.player__info__desc {
+    font-size: 0.5em;
+}
+
+.vs {
+    font-size: 2rem;
+    margin: 0 5px;
+}
+

@@ -27,10 +27,16 @@ import {
 
 import { smallIcon } from '../components/icons'
 
+import PlayIcon1 from '../images/huosai.jpeg'
+import PlayIcon2 from '../images/king.jpeg'
+
+import 'assets/styles.css'
+// import 'lib-flexible'
+
 const styles = {
   slide: {
     padding: 15,
-    minHeight: 100,
+    minHeight: 120,
     color: '#fff',
   },
   slideContainerY: {
@@ -46,7 +52,11 @@ const styles = {
     backgroundColor: '#6AC0FF',
   },
   divider: {
-    height: 50,
+    height: 30,
+  },
+  slideRoot: {
+    minHeight: 120,
+    // maxHeight: 150,
   },
   slideStyle: {
       backgroundColor: '#B3DC4A',
@@ -145,42 +155,153 @@ export default class Group extends Component {
         <div style={{position: 'relative'}}>
             <Pagination style={{ bottom: 'auto', top: 8, zIndex: 1 }} dots={10} index={index} onChangeIndex={this.handleChangeIndex} />
             <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex}>
-                <div style={{ ...styles.slide, ...styles.slide1 }} >
+                <div style={{ ...styles.slide, ...styles.slide1 }}>
                     第一轮
                     <div style={styles.divider} />
-                    <SwipeableViews resistance axis="y" animateHeight={true}>
-                        <div style={Object.assign({}, styles.slide, styles.slide2)}>
-                        运动员A VS 运动员B
+                    <SwipeableViews  axis="y" animateHeight={true} containerStyle={{  }}>
+                      <div className='vs-container vs-container_around' style={styles.slideRoot}>
+                            <div className='player1'>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>1运动员A</p>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className=''>
+                                <img className='player__image' src={PlayIcon2} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>2运动员B</p>
+                                </div>
+                            </div>
                         </div>
-                        <div style={Object.assign({}, styles.slide, styles.slide3)}>
-                        运动员C VS 运动员D
+                        <div className='vs-container vs-container_around' style={styles.slideRoot}>
+                            <div className=''>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>3运动员C</p>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className=''>
+                                <img className='player__image' src={PlayIcon2} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>4运动员D</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='vs-container vs-container_around' style={styles.slideRoot}>
+                            <div className=''>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>5运动员E</p>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className=''>
+                                <img className='player__image' src={PlayIcon2} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>6运动员F</p>
+                                </div>
+                            </div>
                         </div>
                     </SwipeableViews>
                 </div>
-                <div style={{ ...styles.slide, ...styles.slide1 }}>
+
+                <div style={{ ...styles.slide, ...styles.slide1 }} >
                     第二轮
                     <div style={styles.divider} />
-                    <SwipeableViews resistance axis="y" animateHeight={true}>
-                        <div style={Object.assign({}, styles.slide, styles.slide2)}>
-                        运动员A VS 运动员B
+                    <SwipeableViews resistance axis="y" animateHeight={true} >
+                        <div className='vs-container' style={styles.slideRoot}>
+                            <div className='player'>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>运动员A</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className='player'>
+                                <div className='player__info player__info_right'>
+                                    <p className='player__info__name'>运动员B</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                                <img className='player__image player__image_right' src={PlayIcon2} />
+                            </div>
                         </div>
-                        <div style={Object.assign({}, styles.slide, styles.slide3)}>
-                        运动员C VS 运动员D
+                        <div className='vs-container' style={styles.slideRoot}>
+                            <div className='player'>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>运动员A</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className='player'>
+                                <div className='player__info player__info_right'>
+                                    <p className='player__info__name'>运动员B</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                                <img className='player__image player__image_right' src={PlayIcon2} />
+                            </div>
+                        </div>
+                        <div className='vs-container' style={styles.slideRoot}>
+                            <div className='player'>
+                                <img className='player__image' src={PlayIcon1} />
+                                <div className='player__info'>
+                                    <p className='player__info__name'>运动员A</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <span className='vs'>VS</span>
+                            <div className='player'>
+                                <div className='player__info player__info_right'>
+                                    <p className='player__info__name'>运动员B</p>
+                                    <div className='player__info__desc'>
+                                        <p>客场</p>
+                                        <p>胜18负3 第1名</p>
+                                        <p>3号种子 积分：56</p>
+                                    </div>
+                                </div>
+                                <img className='player__image player__image_right' src={PlayIcon2} />
+                            </div>
                         </div>
                     </SwipeableViews>
                 </div>
+            
                 <div style={{ ...styles.slide, ...styles.slide1 }}>
                     第三轮
                     <div style={styles.divider} />
                     <SwipeableViews resistance axis="y" animateHeight={true}>
-                        <div style={Object.assign({}, styles.slide, styles.slide2)}>
+                        <div className='vs-container' style={Object.assign({}, styles.slide, styles.slide3)}>
                         运动员A VS 运动员B
                         </div>
-                        <div style={Object.assign({}, styles.slide, styles.slide3)}>
+                        <div className='vs-container' style={Object.assign({}, styles.slide, styles.slide3)}>
                         运动员C VS 运动员D
                         </div>
                     </SwipeableViews>
                 </div>
+                
             </SwipeableViews>
         </div>
         </Cells>
