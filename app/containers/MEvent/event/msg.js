@@ -15,7 +15,7 @@ const MessagePage = ({ goto }) => (
             {
                 label: '添加赛事项目',
                 type: 'primary',
-                onClick: e => goto('/meventitemlist')
+                onClick: e => goto('/m/event/item/list')
             },
             {
                 label: '回到首页',

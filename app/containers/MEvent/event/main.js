@@ -71,26 +71,26 @@ const classData = [
         icon: <MaJiangIcon />,
         label: '麻将',
     },
-    {
-        icon: <PlusCircle />,
-        label: '运动会',
-    },
-    {
-        icon: <PlusCircle size={28} />,
-        label: '铁人三项',
-    },
-    {
-        icon: <HotIcon size={28} />,
-        label: '拳击',
-    },
+    // {
+    //     icon: <PlusCircle />,
+    //     label: '运动会',
+    // },
+    // {
+    //     icon: <PlusCircle size={28} />,
+    //     label: '铁人三项',
+    // },
+    // {
+    //     icon: <HotIcon size={28} />,
+    //     label: '拳击',
+    // },
     {
         icon: <HeartIcon  color='red'/>,
         label: '更多',
         href: '',
         onClick(e) {
             alert('onClick: 更多')
-            // e.preventDefault()
-            e.stopPropagation()
+            e.preventDefault()
+            // e.stopPropagation()
         }
     },
 ]
@@ -109,7 +109,7 @@ export default class EventMain extends Component {
                 <Grids data={classData}/>
                 <Search />
                 <EventList />
-                <Link to='/meventadd'>
+                <Link to='/m/event/add'>
                     <FaPlusCircle size={50} style={{
                         color: 'green',
                         position: 'fixed',

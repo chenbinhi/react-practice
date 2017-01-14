@@ -39,15 +39,15 @@ class Event extends Component {
                     <PreviewItem label='状态' value='进行中' />
                 </PreviewBody>
                 <PreviewFooter>
-                    <PreviewButton component={Link} to="/meventenroll" >报名</PreviewButton>
-                    <PreviewButton component={Link} to="/meventfight" primary={true} >进入比赛</PreviewButton>
+                    <PreviewButton component={Link} to="/m/event/enroll" >报名</PreviewButton>
+                    <PreviewButton component={Link} to="/m/event/fight" primary={true} >进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
             <br />
             <CellsTitle>项目（设置）</CellsTitle>
             <Cells>
-                <Cell component={Link} to='meventitem' access >
+                <Cell component={Link} to='/m/event/item' access >
                     <CellBody >项目1</CellBody>
                     <CellFooter />
                 </Cell>
@@ -58,7 +58,7 @@ class Event extends Component {
                     </CellBody>
                     <CellFooter />
                 </Cell>
-                <Cell component={Link} to="/meventitem" access>
+                <Cell component={Link} to="/m/event/item" access>
                     <CellBody >项目3</CellBody>
                     <CellFooter />
                 </Cell>

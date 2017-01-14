@@ -111,8 +111,8 @@ export default class Group extends Component {
                 <PreviewItem label='状态' value='进行中(第n轮第n场)' />
             </PreviewBody>
             <PreviewFooter>
-                <PreviewButton component={Link} to="/meventresult">编辑</PreviewButton>
-                <PreviewButton primary component={Link} to="/meventfight">进入比赛</PreviewButton>
+                <PreviewButton component={Link} to="/m/event/result">编辑</PreviewButton>
+                <PreviewButton primary component={Link} to="/m/event/fight">进入比赛</PreviewButton>
             </PreviewFooter>
         </Preview>
         

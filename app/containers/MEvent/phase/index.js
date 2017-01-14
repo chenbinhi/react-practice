@@ -40,8 +40,8 @@ class Phase extends Component {
                     <PreviewItem label='状态' value='进行中(第n轮第n场)' />
                 </PreviewBody>
                 <PreviewFooter>
-                    <PreviewButton component={Link} to="/meventresult">编辑</PreviewButton>
-                    <PreviewButton primary component={Link} to="/meventfight">进入比赛</PreviewButton>
+                    <PreviewButton component={Link} to="/m/event/edit">编辑</PreviewButton>
+                    <PreviewButton primary component={Link} to="/m/event/fight">进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
@@ -72,7 +72,7 @@ class Phase extends Component {
                         10分
                     </CellFooter>
                 </Cell>
-                <Cell component={Link} to="/meventresult" access link>
+                <Cell component={Link} to="/m/event/result" access link>
                     <CellBody >更多</CellBody>
                     <CellFooter />
                 </Cell>
@@ -92,7 +92,7 @@ class Phase extends Component {
                     </CellBody>
                     <CellFooter>4人</CellFooter>
                 </Cell>
-                <Cell component={Link} to="/meventgroup" access>
+                <Cell component={Link} to="/m/event/group" access>
                     <CellBody >C组</CellBody>
                     <CellFooter>4人</CellFooter>
                 </Cell>

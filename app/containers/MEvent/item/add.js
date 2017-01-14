@@ -67,7 +67,7 @@ function handleSubmitFail(error, dispatch, submitError)
 
 function handleSubmitSuccess(result, dispatch)
 {
-    dispatch(push('/meventitemmsg'))
+    dispatch(push('/m/event/item/msg'))
 }
 
 

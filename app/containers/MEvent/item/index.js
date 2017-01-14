@@ -38,9 +38,9 @@ class Item extends Component {
                     <PreviewItem label='状态' value='进行中' />
                 </PreviewBody>
                 <PreviewFooter>
-                    <PreviewButton component={Link} to="/meventresult">编辑</PreviewButton>
-                    <PreviewButton component={Link} to="/meventenroll" >报名</PreviewButton>
-                    <PreviewButton primary component={Link} to="/meventfight">进入比赛</PreviewButton>
+                    <PreviewButton component={Link} to="/m/event/result">编辑</PreviewButton>
+                    <PreviewButton component={Link} to="/m/event/enroll" >报名</PreviewButton>
+                    <PreviewButton primary component={Link} to="/m/event/fight">进入比赛</PreviewButton>
                 </PreviewFooter>
             </Preview>
  
@@ -71,7 +71,7 @@ class Item extends Component {
                         小胖
                     </CellFooter>
                 </Cell>
-                <Cell component={Link} to="/meventresult" access link>
+                <Cell component={Link} to="/m/event/result" access link>
                     <CellBody >更多</CellBody>
                     <CellFooter />
                 </Cell>
@@ -91,7 +91,7 @@ class Item extends Component {
                     </CellBody>
                     <CellFooter />
                 </Cell>
-                <Cell component={Link} to="/meventphase" access>
+                <Cell component={Link} to="/m/event/phase" access>
                     <CellBody >阶段3</CellBody>
                     <CellFooter />
                 </Cell>

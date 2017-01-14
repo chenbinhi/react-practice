@@ -29,13 +29,13 @@ const ItemEdit = () => (
         <PanelHeader>
             <Flex>
                 <FlexItem>赛事名称 项目列表</FlexItem>
-                <FlexItem component={Link} to='/meventitemadd' style={{textAlign: 'right'}}><Plus /></FlexItem>
+                <FlexItem component={Link} to='/m/event/item/add' style={{textAlign: 'right'}}><Plus /></FlexItem>
             </Flex>
         </PanelHeader>
         <PanelBody>
             <MediaBox type='small_appmsg'>
                 <Cells>
-                    <Cell component={Link} to='/meventitem' access>
+                    <Cell component={Link} to='/m/event/item' access>
                         <CellHeader></CellHeader>
                         <CellBody>青年组男子单打
                         <MediaBoxInfo>
@@ -47,7 +47,7 @@ const ItemEdit = () => (
                         </CellBody>
                         <CellFooter></CellFooter>
                     </Cell>
-                    <Cell component={Link} to='/meventitem' access>
+                    <Cell component={Link} to='/m/event/item' access>
                         <CellHeader></CellHeader>
                         <CellBody>
                             <MediaBoxTitle>

@@ -34,7 +34,7 @@ const EventList = (props) => (
             乒乓球赛事列表
         </PanelHeader>
         <PanelBody>
-            <Link to='/mevent'>
+            <Link to='/m/event'>
             <MediaBox type='appmsg' href="">
                 <MediaBoxHeader>{eventIcon}</MediaBoxHeader>
                 <MediaBoxBody href=''>
@@ -46,7 +46,7 @@ const EventList = (props) => (
                         <MediaBoxInfoMeta>奖金</MediaBoxInfoMeta>
                     </MediaBoxInfo>
                 </MediaBoxBody>
-                <Rating start={2} step={1} end={6} 
+                <Rating start={0} step={1} end={6} 
                     empty={<FaHeartO color='red' style={ { marginRight: 2 }}/>}
                     full={<FaHeart color='red' style={ { marginRight: 2 }}/>} 
                     onClick={ (rate, e) => {

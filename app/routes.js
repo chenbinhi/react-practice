@@ -14,6 +14,7 @@ import ScrollList from 'containers/ScrollList'
 
 import MEventIndexPage from 'containers/MEvent'
 import MEventPage from 'containers/MEvent/event'
+import MEventListPage from 'containers/MEvent/event/list'
 import MEventAddPage from 'containers/MEvent/event/add'
 import MEventMsgPage from 'containers/MEvent/event/msg'
 import MEventItemPage from 'containers/MEvent/item'
@@ -44,17 +45,18 @@ export default (<Route path='/' component={App}>
                 <IndexRoute component={Dashboard} />
                 <Route path='page/:id' component={Page} />
                 <Route path='m' component={MEventIndexPage} />
-                <Route path='mevent' component={MEventPage} />
-                <Route path='meventadd' component={MEventAddPage} />
-                <Route path='meventmsg' component={MEventMsgPage} />
-                <Route path='meventitem' component={MEventItemPage} />
-                <Route path='meventitemlist' component={MEventItemListPage} />
-                <Route path='meventitemadd' component={MEventItemAddPage} />
-                <Route path='meventitemmsg' component={MEventItemMsgPage} />
-                <Route path='meventphase' component={MEventPhasePage} />
-                <Route path='meventgroup' component={MEventGroupPage} />
-                <Route path='meventfight' component={MEventFightPage} />
-                <Route path='meventme' component={MEventMePage} />
+                <Route path='m/event' component={MEventPage} />
+                <Route path='m/event/list' component={MEventListPage} />
+                <Route path='m/event/add' component={MEventAddPage} />
+                <Route path='m/event/msg' component={MEventMsgPage} />
+                <Route path='m/event/item' component={MEventItemPage} />
+                <Route path='m/event/item/list' component={MEventItemListPage} />
+                <Route path='m/event/item/add' component={MEventItemAddPage} />
+                <Route path='m/event/item/msg' component={MEventItemMsgPage} />
+                <Route path='m/event/phase' component={MEventPhasePage} />
+                <Route path='m/event/group' component={MEventGroupPage} />
+                <Route path='m/event/fight' component={MEventFightPage} />
+                <Route path='m/event/me' component={MEventMePage} />
                  <Route path='event' component={EventPage} >
                     <IndexRoute component={CreateEventPage} />
                     <Route path='create' component={CreateEventPage} />

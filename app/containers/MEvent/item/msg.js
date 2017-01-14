@@ -15,7 +15,7 @@ const MessagePage = ({ goto, history }) => (
             {
                 label: '设置项目阶段',
                 type: 'primary',
-                onClick: e => goto('/meventpharseedit')
+                onClick: e => goto('/m/event/pharse/edit')
             },
             {
                 label: '返回',
@@ -24,7 +24,7 @@ const MessagePage = ({ goto, history }) => (
                     if (history)
                         history.goBack()
                     else
-                        goto('/meventitemlist')
+                        goto('/m/event/item/list')
                 }
             },
         ]}
