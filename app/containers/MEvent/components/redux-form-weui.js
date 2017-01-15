@@ -34,13 +34,13 @@ export const RFInput = ({ label, name, footer, meta: { touch, error, warning }, 
     </FormCell>
 )
 
-export const RFRadio = ({ label, radioValue: value, meta: { touch, error, warning }, input: inputProps, ...props }) => (
+export const RFRadio = ({ label, meta: { touch, error, warning }, input: inputProps, ...props }) => (
     <FormCell radio>
         <CellBody>
             { label }
         </CellBody>
         <CellFooter>
-            <Radio { ...inputProps } { ...props} value={value} />
+            <Radio { ...inputProps } { ...props} />
         </CellFooter>
     </FormCell>
 )
