@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { reduxForm, Field, SubmissionError } from 'redux-form'
+import { connect } from 'react-redux'
+import { reduxForm, Field, SubmissionError, formValueSelector } from 'redux-form'
 import { push } from 'react-router-redux'
 import {
     Cells,
@@ -26,7 +27,7 @@ import {
 import Footer from '../components/Footer'
 import AutoToptips from '../components/AutoToptips'
 
-const AddEvent = ({ handleSubmit, error, submitting, submitFailed }) => (
+const AddEvent = ({ handleSubmit, error, enrollNow, submitting, submitFailed }) => (
 <form onSubmit={handleSubmit}>
     <CellsTitle>创建新赛事</CellsTitle>
     <Form>
@@ -39,8 +40,8 @@ const AddEvent = ({ handleSubmit, error, submitting, submitFailed }) => (
         <Field name='name' label='名称' placeholder='请输入赛事名称' component={ RFInput } />
         <Field name='description' label='描述' placeholder='请输入赛事描述' maxLength={200} rows={2} component={ RFTextArea } />
         <Field name='address' label='地址' placeholder='请比赛所在的地址' component={ RFInput } />
-        <Field name='enroll' label='立即开始报名' component={ RFSwitch } />
-        <Field name='startEnrollDatetime' label='报名开始时间' type='datetime-local' component={ RFInput } />
+        <Field name='enroll' label='立即开始报名' type='checkbox' component={ RFSwitch } />
+        { enrollNow || <Field name='startEnrollDatetime' label='报名开始时间' type='datetime-local' component={ RFInput } /> }
         <Field name='endEnrollDatetime' label='报名截止时间' type='datetime-local' component={ RFInput } />
         <Field name='startDatetime' label='比赛开始时间' type='datetime-local' component={ RFInput } />
         <Field name='endDatetime' label='比赛结束时间' type='datetime-local' component={ RFInput } />
@@ -69,7 +70,7 @@ function handleSubmit(values) {
 
 function handleSubmitFail(error, dispatch, submitError)
 {
-    console.log(error, submitError)
+    // console.log(error, submitError)
 }
 
 function handleSubmitSuccess(result, dispatch)
@@ -77,8 +78,13 @@ function handleSubmitSuccess(result, dispatch)
     dispatch(push('/m/event/msg'))
 }
 
+const selector = formValueSelector('addEvent')
 
-const AddEventWithData = reduxForm({
+const AddEventWithData = connect(
+    state => ({
+        enrollNow: selector(state, 'enroll')
+    })
+)(reduxForm({
     form: 'addEvent',
     initialValues: {
         class: 1,
@@ -87,6 +93,6 @@ const AddEventWithData = reduxForm({
     onSubmit: handleSubmit,
     onSubmitFail: handleSubmitFail,
     onSubmitSuccess: handleSubmitSuccess,
-})(AddEvent)
+})(AddEvent))
 
 export default AddEventWithData
