@@ -28,7 +28,7 @@ import Footer from '../components/Footer'
 import AutoToptips from '../components/AutoToptips'
 
 const AddEvent = ({ handleSubmit, error, enrollNow, submitting, submitFailed }) => (
-<form onSubmit={handleSubmit}>
+<form>
     <CellsTitle>创建新赛事</CellsTitle>
     <Form>
         <Field name='class' label='类别' component={ RFSelect }>
