@@ -26,6 +26,8 @@
     min-height: 120px;
     color: #fff;
     background-color: #6AC0FF;
+    border: 3px solid #6AC0F0;
+    margin-bottom: 10px;
 }
 
 .player {

@@ -26,7 +26,7 @@ import {
 } from 'react-weui'
 
 import { smallIcon } from '../components/icons'
-
+import FightList from './FightList'
 import PlayIcon1 from '../images/huosai.jpeg'
 import PlayIcon2 from '../images/king.jpeg'
 
@@ -55,8 +55,6 @@ const styles = {
     height: 30,
   },
   slideRoot: {
-    minHeight: 120,
-    // maxHeight: 150,
   },
   slideStyle: {
       backgroundColor: '#B3DC4A',
@@ -154,11 +152,11 @@ export default class Group extends Component {
         <br />
         <div style={{position: 'relative'}}>
             <Pagination style={{ bottom: 'auto', top: 8, zIndex: 1 }} dots={10} index={index} onChangeIndex={this.handleChangeIndex} />
-            <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex}>
+            <SwipeableViews index={index} animateHeight={true}  onChangeIndex={this.handleChangeIndex}>
                 <div style={{ ...styles.slide, ...styles.slide1 }}>
                     第一轮
                     <div style={styles.divider} />
-                    <SwipeableViews  axis="y" animateHeight={true} containerStyle={{  }}>
+                    <SwipeableViews  axis="y" animateHeight={true}>
                       <div className='vs-container vs-container_around' style={styles.slideRoot}>
                             <div className='player1'>
                                 <img className='player__image' src={PlayIcon1} />
@@ -301,7 +299,8 @@ export default class Group extends Component {
                         </div>
                     </SwipeableViews>
                 </div>
-                
+                <FightList onClick={ e=> 修改球桌}/>
+                <div>test</div>
             </SwipeableViews>
         </div>
         </Cells>
