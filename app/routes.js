@@ -5,8 +5,8 @@ import App from 'containers/App'
 import Page from 'containers/Page'
 import About from 'containers/About'
 
-//import EventForm from 'containers/EventForm'
-//                 <Route path='form' component={EventForm} />
+import EventForm from 'containers/EventForm'
+                 
 import Board from 'containers/Board'
 import Layout from 'containers/Layout'
 import Virtual from 'containers/Virtual'
@@ -70,6 +70,7 @@ export default (<Route path='/' component={App}>
                     <Route path='result' component={ResultPage} />
                  </Route>
                 <Route path='board' component={Board} />
+                <Route path='form' component={EventForm} />
                 <Route path='layout' component={Layout} />
                 <Route path='virtual' component={Virtual} />
                 <Route path='scrolllist' component={ScrollList} />

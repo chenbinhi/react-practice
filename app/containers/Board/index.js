@@ -40,7 +40,7 @@ class Board extends Component {
         let dragSquares = []
         for (let i = 0; i < 3; i++) {
             let index = this.state.active.indexOf(i)
-            dragSquares.push(<DragSquare id= {i} dropId={index} count={i+1} />)
+            dragSquares.push(<DragSquare key={i} id= {i} dropId={index} count={i+1} />)
         }
         return (
             <div className={styles['flex-center']}>

@@ -111,7 +111,6 @@ class App extends Component {
     render() {
         return (
             <div className={styles.app}>
-            {/*
                 <div className={styles.nav}>
                     <div className='empty'>
                         <IndexLink to='/' activeClassName={styles.active}>Home</IndexLink>
@@ -144,8 +143,17 @@ class App extends Component {
                         <Link to='/about' activeClassName='active' >About</Link>
                     </div>
                 </div>
-            */}
-            {/*
+                <div className={styles.header} ref={ ref => this.appRef = ref } onClick={this.click}>
+                    <a href="#" >This is an App</a>
+                    <div>app state: {JSON.stringify(this.state)}</div>
+                </div>
+                {this.props.children}
+                <Cleave placeholder='Cleave: YYYY/MM/DD' options={{date: true, datePattern: ['Y', 'm', 'd']}} />
+                <Input value={ this.state.input || 'Controlled Input' } onInput={ this.ctrlInput } />
+                <UnctrlInput defaultValue='Uncontrolled Input' onInput={ this.unctrlInput } />
+                <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
+                { /*<Datetime />*/ }
+                <LazyImg src='https://weflow.io/img/logo-icon.png' />
                 <div className={styles.debug}>
                     <ul>
                         <li>context: { JSON.stringify(this.context) }</li>
@@ -155,20 +163,6 @@ class App extends Component {
                         <li>Media Query: <Media query="(max-width: 599px)"><p>The document is less than 600px wide.</p></Media></li>
                     </ul>
                 </div>
-                <div className={styles.header} ref={ ref => this.appRef = ref } onClick={this.click}>
-                    <a href="#" >This is an App</a>
-                    <div>app state: {JSON.stringify(this.state)}</div>
-                </div>
-            */}
-                {this.props.children}
-            {/*
-                <Cleave placeholder='Cleave: YYYY/MM/DD' options={{date: true, datePattern: ['Y', 'm', 'd']}} />
-                <Input value={ this.state.input || 'Controlled Input' } onInput={ this.ctrlInput } />
-                <UnctrlInput defaultValue='Uncontrolled Input' onInput={ this.unctrlInput } />
-                <LogA s='LogA' onClick={ () => alert('LogA clicked!') } />
-                <Datetime />
-                <LazyImg src='https://weflow.io/img/logo-icon.png' />
-            */}
             </div>
         );
     }

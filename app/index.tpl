@@ -3,7 +3,7 @@
   <meta charset='utf8' />
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- <script src="https://jsconsole.com/js/remote.js?my"></script> -->
   <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
 	<title>Example App</title>

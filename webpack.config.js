@@ -104,7 +104,7 @@ module.exports =
             "/api": {
                 target: 'http://www.vvsai.com',
                 rewrite: function (req) {
-                    req.url = "/official/vsaiSports/searchSportEvents"
+                    req.url = "/api/sport/getoneMatchSettingSports?matchRule=8"
                 }
             }
         }

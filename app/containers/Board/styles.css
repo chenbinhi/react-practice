@@ -1,4 +1,4 @@
-/*.drag {
+.drag {
     width: 60px;
     background-color: blue;
     margin: 5px;
@@ -23,27 +23,27 @@
     width: 600px;
     border: 1px solid red;
     margin: 10px;
-}*/
+}
 /*.board {
     display: flex;
     border: 1px solid red;
     margin: 10px;
     box-sizing: border-box;
     flex-wrap: wrap;
-}*/
+}
 
 
 .board {
-    /*width: 700px;
-    height: 500px;*/
+    width: 700px;
+    height: 500px;
     overflow: scroll;
     border: 1px solid red;
     margin: 10px;
     box-sizing: border-box;
-    /*composes: unit-1-2 from 'mobi.css'*/
+    composes: unit-1-2 from 'mobi.css'
 }
 
-/*.flex-center {
+.flex-center {
     composes: flex-center from 'mobi.css'
 }
 
@@ -53,10 +53,10 @@
 
 .hide-on-mobile {
     composes: hide-on-mobile from 'mobi.css'
-}*/
+}
 
 .drop {
-    /*width: 100px;*/
+    width: 100px;
     border: 1px solid blue;
     margin: 5px;
     padding: 5px;
@@ -67,3 +67,4 @@
     margin: 5px;
     padding: 5px;
 }
+*/
